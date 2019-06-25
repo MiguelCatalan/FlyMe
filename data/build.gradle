@@ -1,5 +1,6 @@
 apply from: '../dependencies/globalDependencies.gradle'
 apply from: '../app/buildConfig/buildVersion.gradle'
+
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -29,6 +30,8 @@ android {
 }
 
 dependencies {
+    implementation project(':domain')
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}"
 
     testImplementation "junit:junit:${junitVersion}"

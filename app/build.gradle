@@ -27,8 +27,9 @@ android {
 
 dependencies {
     api project(':domain')
+    api project(':data')
 
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
     implementation "com.android.support:appcompat-v7:${appCompatV7Version}"
 
