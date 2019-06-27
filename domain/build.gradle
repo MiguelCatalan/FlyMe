@@ -2,6 +2,16 @@ apply from: '../dependencies/globalDependencies.gradle'
 apply from: 'dependencies/dependencies.gradle'
 apply plugin: 'kotlin'
 
+sourceSets {
+    main.java.srcDirs += 'src/main/java'
+    test.java.srcDirs += 'src/test/java'
+}
+
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}"
+    implementation "io.reactivex.rxjava2:rxjava:${rxJavaVersion}"
+
+    testImplementation "junit:junit:$junitVersion"
+    testImplementation "org.amshove.kluent:kluent:${kluentVersion}"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
 }
