@@ -3,6 +3,9 @@ ext {
     // Kotlin
     kotlinVersion = '1.3.31'
 
+    // RxJava
+    rxJavaVersion = '2.2.8'
+
     //Android
     androidMinSdkVersion = 19
     androidTargetSdkVersion = 28
@@ -10,4 +13,5 @@ ext {
 
     //Test
     junitVersion = '4.12'
+    kluentVersion = '1.20'
 }
