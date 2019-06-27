@@ -7,11 +7,12 @@ class AirportResource(
 ) {
 
     fun searchForAirport(searchTerm: String): Observable<List<Airport>> {
-        return airportApi.getAllAirports().map { airports ->
-            val filteredAirports: MutableList<Airport> = mutableListOf()
-            filteredAirports.addAll(airports.filter { airport -> airport.name.contains(searchTerm) })
-            filteredAirports.addAll(airports.filter { airport -> airport.airportCode.contains(searchTerm) })
-            filteredAirports
-        }
+        return airportApi.getAllAirports()
+            .flatMap { Observable.fromIterable(it) }
+            .filter {
+                (it.name.contains(searchTerm) || it.airportCode.contains(searchTerm))
+            }
+            .toList()
+            .toObservable()
     }
 }
