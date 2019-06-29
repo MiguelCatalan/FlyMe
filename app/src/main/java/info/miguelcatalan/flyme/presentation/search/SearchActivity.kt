@@ -1,7 +1,7 @@
 package info.miguelcatalan.flyme.presentation.search
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import info.miguelcatalan.flyme.R
 
 class SearchActivity : AppCompatActivity() {
