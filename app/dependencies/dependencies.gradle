@@ -2,6 +2,8 @@ ext {
 
     // Android support libraries
     appcompatVersion = '1.0.2'
+    lifecycleVersion = '2.0.0'
+    ktxVersion = '1.0.2'
 
     // Testing
     runner = '1.1.0'

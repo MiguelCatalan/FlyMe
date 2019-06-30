@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="info.miguelcatalan.flyme">
+<manifest
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        package="info.miguelcatalan.flyme">
 
     <application
             android:name=".FlyMeApplication"
@@ -9,6 +11,7 @@
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="false"
+            tools:ignore="AllowBackup,GoogleAppIndexingWarning"
             android:theme="@style/AppTheme">
         <activity android:name=".presentation.search.SearchActivity">
             <intent-filter>
