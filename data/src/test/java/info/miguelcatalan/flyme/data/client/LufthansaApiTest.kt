@@ -17,7 +17,7 @@ class LufthansaApiTest {
         .create(LufthansaApi::class.java)
 
     @Test
-    fun shouldFailAuthWhenCredentialAreWrong() {
+    fun `should fail auth when credentials are wrong`() {
         val testObserver = lufthansaApi.authenticate(
             key = "",
             secret = SECRET
@@ -29,7 +29,7 @@ class LufthansaApiTest {
     }
 
     @Test
-    fun shouldReturnTokenWhenCredentialsAreOk() {
+    fun `should return a token when credentials are right`() {
         val testObserver = lufthansaApi.authenticate(
             key = KEY,
             secret = SECRET
@@ -44,7 +44,7 @@ class LufthansaApiTest {
     }
 
     @Test
-    fun shouldReturnFiveAirports() {
+    fun `should return five airports`() {
         val testObserver = lufthansaApi.authenticate(
             key = KEY,
             secret = SECRET
