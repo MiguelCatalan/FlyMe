@@ -30,7 +30,7 @@ class RxBaseRepositoryTest {
     }
 
     @Test
-    fun shouldEmitAValueFromReadableDataSourceAndAddItToCacheableDataSource() {
+    fun `should emit a value from readable data source and add it to cacheableDataSource`() {
         val anyRepositoryValue: AnyRepositoryValue = RxBaseRepositoryMother.ANY_VALUE
 
         rxRepositoryMother.setupCacheableDataSourceToReturnNothingByKey()
@@ -48,7 +48,7 @@ class RxBaseRepositoryTest {
     }
 
     @Test
-    fun shouldEmitAValueFromCacheableDataSource() {
+    fun `should emit a value from cacheableDataSource`() {
         val anyRepositoryValue: AnyRepositoryValue = RxBaseRepositoryMother.ANY_VALUE
 
         rxRepositoryMother.setupCacheableDataSourceToReturnValueByKey(anyRepositoryValue)
@@ -64,7 +64,7 @@ class RxBaseRepositoryTest {
     }
 
     @Test
-    fun shouldEmitAllValuesFromReadableDataSourceAndAddItToCacheableDataSource() {
+    fun `should emit all values from readableDataSource and add it to cacheableDataSource`() {
         val anyRepositoryValues: List<AnyRepositoryValue> = RxBaseRepositoryMother.ALL_VALUES
 
         rxRepositoryMother.setupCacheableDataSourceToReturnNothingAll()
@@ -82,7 +82,7 @@ class RxBaseRepositoryTest {
     }
 
     @Test
-    fun shouldEmitAllValuesFromCacheableDataSource() {
+    fun `should emit all values from CacheableDataSource`() {
         val anyRepositoryValues: List<AnyRepositoryValue> = RxBaseRepositoryMother.ALL_VALUES
 
         rxRepositoryMother.setupCacheableDataSourceToReturnAllValues(anyRepositoryValues)
@@ -98,7 +98,7 @@ class RxBaseRepositoryTest {
     }
 
     @Test
-    fun shouldEmitUpdatedModelAfterUpdateIt() {
+    fun `should emit updated model after update it`() {
         val anyRepositoryValue: AnyRepositoryValue = RxBaseRepositoryMother.ANY_VALUE
         val newRepositoryKey = AnyRepositoryKey(111111)
 

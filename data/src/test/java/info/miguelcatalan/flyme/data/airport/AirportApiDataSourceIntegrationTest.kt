@@ -37,7 +37,7 @@ class AirportApiDataSourceIntegrationTest {
     }
 
     @Test
-    fun shouldReturnAllAirportsPaginated() {
+    fun `should return all airports paginated`() {
         val airportApiDataSource = AirportApiDataSource(lufthansaApi, authRepository)
 
         val testObserver = airportApiDataSource.getAll().test()

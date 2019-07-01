@@ -2,6 +2,7 @@ package info.miguelcatalan.flyme.domain.airport
 
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
+import info.miguelcatalan.flyme.domain.repository.RxBaseRepository
 import info.miguelcatalan.flyme.domain.utils.value
 import io.reactivex.Observable
 import org.amshove.kluent.`should contain`
@@ -10,14 +11,14 @@ import org.junit.Test
 
 class AirportResourceTest {
 
-    private val api: AirportApi = mock()
-    private val resource = AirportResource(api)
+    private val repository: RxBaseRepository<String, Airport> = mock()
+    private val resource = AirportResource(repository)
 
     @Test
-    fun shouldReturnTenerifeAirportsWhenFilteringByNameCapitalized() {
+    fun `should return Tenerife airports when filtering by capitalized name`() {
         val tfnAirport = AirportMother.givenAnAirport(name = "Tenerife Norte", airportCode = "TFN")
         val tfsAirport = AirportMother.givenAnAirport(name = "Tenerife Sur", airportCode = "TFS")
-        whenever(api.getAllAirports()).thenReturn(
+        whenever(repository.getAll()).thenReturn(
             Observable.just(
                 listOf(
                     AirportMother.givenAnyAirport(),
@@ -36,10 +37,10 @@ class AirportResourceTest {
     }
 
     @Test
-    fun shouldReturnTenerifeAirportsWhenFilteringByNameLowerCase() {
+    fun `should return Tenerife airports when filtering by lowecased name`() {
         val tfnAirport = AirportMother.givenAnAirport(name = "Tenerife Norte", airportCode = "TFN")
         val tfsAirport = AirportMother.givenAnAirport(name = "Tenerife Sur", airportCode = "TFS")
-        whenever(api.getAllAirports()).thenReturn(
+        whenever(repository.getAll()).thenReturn(
             Observable.just(
                 listOf(
                     AirportMother.givenAnyAirport(),
@@ -58,10 +59,10 @@ class AirportResourceTest {
     }
 
     @Test
-    fun shouldReturnTenerifeAirportsWhenFilteringByCodeUppercase() {
+    fun `should return Tenerife airports when filtering by uppercase airport code`() {
         val tfnAirport = AirportMother.givenAnAirport(name = "Tenerife Norte", airportCode = "TFN")
         val tfsAirport = AirportMother.givenAnAirport(name = "Tenerife Sur", airportCode = "TFS")
-        whenever(api.getAllAirports()).thenReturn(
+        whenever(repository.getAll()).thenReturn(
             Observable.just(
                 listOf(
                     AirportMother.givenAnyAirport(),
@@ -80,10 +81,10 @@ class AirportResourceTest {
     }
 
     @Test
-    fun shouldReturnTenerifeAirportsWhenFilteringByCodeLowercase() {
+    fun `should return Tenerife airports when filtering by lowercase airport code`() {
         val tfnAirport = AirportMother.givenAnAirport(name = "Tenerife Norte", airportCode = "TFN")
         val tfsAirport = AirportMother.givenAnAirport(name = "Tenerife Sur", airportCode = "TFS")
-        whenever(api.getAllAirports()).thenReturn(
+        whenever(repository.getAll()).thenReturn(
             Observable.just(
                 listOf(
                     AirportMother.givenAnyAirport(),
@@ -100,14 +101,4 @@ class AirportResourceTest {
         testObserver.value() `should contain` tfnAirport
         testObserver.value() `should contain` tfsAirport
     }
-
-    private fun getAnyListOfAirportsAnd(): List<Airport> {
-        return listOf(
-            Airport(name = "Barajas", airportCode = "MAD"),
-            Airport(name = "El prat", airportCode = "BCN"),
-            Airport(name = "Tenerife Norte", airportCode = "TFN"),
-            Airport(name = "Tenerife Sur", airportCode = "TFS")
-        )
-    }
-
 }
