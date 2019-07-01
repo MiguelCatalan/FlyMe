@@ -14,7 +14,7 @@ class AirportResourceTest {
     private val resource = AirportResource(api)
 
     @Test
-    fun shouldReturnTenerifeAirportsWhenFilteringByNameCapitalized() {
+    fun `should return Tenerife airports when filtering by capitalized name`() {
         val tfnAirport = AirportMother.givenAnAirport(name = "Tenerife Norte", airportCode = "TFN")
         val tfsAirport = AirportMother.givenAnAirport(name = "Tenerife Sur", airportCode = "TFS")
         whenever(api.getAllAirports()).thenReturn(
@@ -36,7 +36,7 @@ class AirportResourceTest {
     }
 
     @Test
-    fun shouldReturnTenerifeAirportsWhenFilteringByNameLowerCase() {
+    fun `should return Tenerife airports when filtering by lowecased name`() {
         val tfnAirport = AirportMother.givenAnAirport(name = "Tenerife Norte", airportCode = "TFN")
         val tfsAirport = AirportMother.givenAnAirport(name = "Tenerife Sur", airportCode = "TFS")
         whenever(api.getAllAirports()).thenReturn(
@@ -58,7 +58,7 @@ class AirportResourceTest {
     }
 
     @Test
-    fun shouldReturnTenerifeAirportsWhenFilteringByCodeUppercase() {
+    fun `should return Tenerife airports when filtering by uppercase airport code`() {
         val tfnAirport = AirportMother.givenAnAirport(name = "Tenerife Norte", airportCode = "TFN")
         val tfsAirport = AirportMother.givenAnAirport(name = "Tenerife Sur", airportCode = "TFS")
         whenever(api.getAllAirports()).thenReturn(
@@ -80,7 +80,7 @@ class AirportResourceTest {
     }
 
     @Test
-    fun shouldReturnTenerifeAirportsWhenFilteringByCodeLowercase() {
+    fun `should return Tenerife airports when filtering by lowercase airport code`() {
         val tfnAirport = AirportMother.givenAnAirport(name = "Tenerife Norte", airportCode = "TFN")
         val tfsAirport = AirportMother.givenAnAirport(name = "Tenerife Sur", airportCode = "TFS")
         whenever(api.getAllAirports()).thenReturn(
