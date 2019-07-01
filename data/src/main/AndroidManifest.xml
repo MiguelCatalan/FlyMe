@@ -1,2 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="info.miguelcatalan.flyme.data"/>
+          package="info.miguelcatalan.flyme.data">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+</manifest>

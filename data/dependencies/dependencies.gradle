@@ -1,0 +1,4 @@
+ext {
+    okhttpVersion = '3.10.0'
+    retrofitVersion = '2.5.0'
+}
