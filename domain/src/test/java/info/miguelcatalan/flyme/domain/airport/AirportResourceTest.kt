@@ -14,7 +14,7 @@ class AirportResourceTest {
     private val resource = AirportResource(api)
 
     @Test
-    fun shouldReturnTenerifeAirportsWhenFilteringByName() {
+    fun shouldReturnTenerifeAirportsWhenFilteringByNameCapitalized() {
         val tfnAirport = AirportMother.givenAnAirport(name = "Tenerife Norte", airportCode = "TFN")
         val tfsAirport = AirportMother.givenAnAirport(name = "Tenerife Sur", airportCode = "TFS")
         whenever(api.getAllAirports()).thenReturn(
@@ -36,7 +36,29 @@ class AirportResourceTest {
     }
 
     @Test
-    fun shouldReturnTenerifeAirportsWhenFilteringByCode() {
+    fun shouldReturnTenerifeAirportsWhenFilteringByNameLowerCase() {
+        val tfnAirport = AirportMother.givenAnAirport(name = "Tenerife Norte", airportCode = "TFN")
+        val tfsAirport = AirportMother.givenAnAirport(name = "Tenerife Sur", airportCode = "TFS")
+        whenever(api.getAllAirports()).thenReturn(
+            Observable.just(
+                listOf(
+                    AirportMother.givenAnyAirport(),
+                    AirportMother.givenAnyAirport(),
+                    tfnAirport,
+                    tfsAirport
+                )
+            )
+        )
+
+        val testObserver = resource.searchForAirport("tenerife").test()
+
+        testObserver.value().size `should equal to` 2
+        testObserver.value() `should contain` tfnAirport
+        testObserver.value() `should contain` tfsAirport
+    }
+
+    @Test
+    fun shouldReturnTenerifeAirportsWhenFilteringByCodeUppercase() {
         val tfnAirport = AirportMother.givenAnAirport(name = "Tenerife Norte", airportCode = "TFN")
         val tfsAirport = AirportMother.givenAnAirport(name = "Tenerife Sur", airportCode = "TFS")
         whenever(api.getAllAirports()).thenReturn(
@@ -55,6 +77,37 @@ class AirportResourceTest {
         testObserver.value().size `should equal to` 2
         testObserver.value() `should contain` tfnAirport
         testObserver.value() `should contain` tfsAirport
+    }
+
+    @Test
+    fun shouldReturnTenerifeAirportsWhenFilteringByCodeLowercase() {
+        val tfnAirport = AirportMother.givenAnAirport(name = "Tenerife Norte", airportCode = "TFN")
+        val tfsAirport = AirportMother.givenAnAirport(name = "Tenerife Sur", airportCode = "TFS")
+        whenever(api.getAllAirports()).thenReturn(
+            Observable.just(
+                listOf(
+                    AirportMother.givenAnyAirport(),
+                    AirportMother.givenAnyAirport(),
+                    tfnAirport,
+                    tfsAirport
+                )
+            )
+        )
+
+        val testObserver = resource.searchForAirport("tf").test()
+
+        testObserver.value().size `should equal to` 2
+        testObserver.value() `should contain` tfnAirport
+        testObserver.value() `should contain` tfsAirport
+    }
+
+    private fun getAnyListOfAirportsAnd(): List<Airport> {
+        return listOf(
+            Airport(name = "Barajas", airportCode = "MAD"),
+            Airport(name = "El prat", airportCode = "BCN"),
+            Airport(name = "Tenerife Norte", airportCode = "TFN"),
+            Airport(name = "Tenerife Sur", airportCode = "TFS")
+        )
     }
 
 }
