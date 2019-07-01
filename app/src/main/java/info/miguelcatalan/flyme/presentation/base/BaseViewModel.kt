@@ -6,13 +6,11 @@ import io.reactivex.disposables.Disposable
 
 abstract class BaseViewModel : ViewModel() {
 
-    private val compositeDisposable = CompositeDisposable()
-
-    fun addSubscription(disposable: Disposable) {
-        compositeDisposable.add(disposable)
-    }
+    protected val disposableBag = CompositeDisposable()
 
     override fun onCleared() {
-        compositeDisposable.clear()
+        disposableBag.clear()
     }
+
+    fun Disposable.addDisposableTo(bag: CompositeDisposable): Disposable = apply { bag.add(this) }
 }

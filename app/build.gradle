@@ -41,9 +41,9 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycleVersion"
     testImplementation "androidx.arch.core:core-testing:$lifecycleVersion"
-
-    implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+    
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+    implementation "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}"
 
     implementation "org.koin:koin-android:$koinVersion"
     implementation "org.koin:koin-android-scope:$koinVersion"

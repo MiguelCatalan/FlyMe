@@ -11,4 +11,6 @@ ext {
 
     // Dependency injector
     koinVersion = '2.0.1'
+
+    rxKotlinVersion = '2.0.3'
 }
