@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="search_hint">Search for an airport</string>
+    <string name="search_loading">Searching for airports…</string>
+    <string name="search_empty">We haven\'t found any results</string>
+</resources>

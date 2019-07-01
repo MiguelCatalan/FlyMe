@@ -2,6 +2,8 @@ ext {
 
     // Android support libraries
     appcompatVersion = '1.0.2'
+    recyclerVersion = '1.0.0'
+    cardViewVersion = '1.0.0'
     lifecycleVersion = '2.0.0'
     ktxVersion = '1.0.2'
 
@@ -13,4 +15,6 @@ ext {
     koinVersion = '2.0.1'
 
     rxKotlinVersion = '2.0.3'
+
+    groupieVersion = '2.0.3'
 }
