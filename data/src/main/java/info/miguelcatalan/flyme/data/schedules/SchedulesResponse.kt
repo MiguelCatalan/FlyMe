@@ -74,7 +74,7 @@ data class ScheduledTimeLocalApi(
 
 data class TerminalApi(
     @SerializedName("Name")
-    val name: Int
+    val name: String
 )
 
 data class MarketingCarrierApi(

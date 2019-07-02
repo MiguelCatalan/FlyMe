@@ -18,7 +18,7 @@ data class Flight(
 data class AirportTime(
     val airportCode: String,
     val dateTime: String,
-    val terminal: Int? = null
+    val terminal: String? = null
 )
 
 data class Carrier(
