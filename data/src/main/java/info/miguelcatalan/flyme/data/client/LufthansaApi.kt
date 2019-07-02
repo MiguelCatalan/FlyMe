@@ -1,5 +1,6 @@
 package info.miguelcatalan.flyme.data.client
 
+import info.miguelcatalan.flyme.data.airport.AirportResponse
 import info.miguelcatalan.flyme.data.airport.AirportsResponse
 import info.miguelcatalan.flyme.data.auth.AuthResponse
 import info.miguelcatalan.flyme.data.schedules.SchedulesResponse
@@ -23,6 +24,13 @@ interface LufthansaApi {
         @Query("limit") max: Int,
         @Query("offset") offset: Int
     ): Observable<AirportsResponse>
+
+    @GET("references/airports/{airportCode}")
+    @Headers("Accept: application/json")
+    fun getAirport(
+        @Header("Authorization") authorization: String,
+        @Path("airportCode") airportCode: String
+    ): Observable<AirportResponse>
 
     @GET("operations/schedules/{departureAirportCode}/{arrivalAirportCode}/{date}")
     @Headers("Accept: application/json")

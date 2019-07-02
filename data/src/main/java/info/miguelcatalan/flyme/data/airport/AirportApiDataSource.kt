@@ -18,7 +18,15 @@ class AirportApiDataSource(
     }
 
     override fun getByKey(key: String): Observable<Airport> {
-        return Observable.just(Airport("", "", null))
+        return authRepository.getByKey(Auth.KEY)
+            .flatMap { auth ->
+                lufthansaApi.getAirport(
+                    authorization = "Bearer ${auth.accessToken}",
+                    airportCode = key
+                ).map {
+                    it.airportResource.airport.airport.toDomain()
+                }
+            }
     }
 
     override fun getAll(): Observable<List<Airport>> {
@@ -85,7 +93,6 @@ class AirportApiDataSource(
             )
         )
     }
-
 }
 
 data class PaginatedData(

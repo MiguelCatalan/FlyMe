@@ -2,7 +2,6 @@ package info.miguelcatalan.flyme.data.client
 
 import org.junit.Test
 import retrofit2.HttpException
-import java.util.*
 
 class LufthansaApiTest {
 
@@ -12,6 +11,7 @@ class LufthansaApiTest {
         const val SECRET = "ayVqaZPS3G"
 
         const val UNAUTHORIZED = 401
+        const val BAD_REQUEST = 400
     }
 
     private val lufthansaApi = ApiClientBuilder(BASE_URL)
@@ -60,6 +60,41 @@ class LufthansaApiTest {
         testObserver.assertComplete()
         testObserver.assertValue {
             it.airportsResource.airports.airports.size == 5
+        }
+    }
+
+    @Test
+    fun `should return an airport detail if the airport code exists`() {
+        val testObserver = lufthansaApi.authenticate(
+            key = KEY,
+            secret = SECRET
+        ).flatMap {
+            lufthansaApi.getAirport(
+                authorization = "Bearer ${it.accessToken}",
+                airportCode = "MAD"
+            )
+        }.test()
+
+        testObserver.assertComplete()
+        testObserver.assertValue {
+            it.airportResource.airport.airport.airportCode == "MAD"
+        }
+    }
+
+    @Test
+    fun `should fail if the airport code does not exists`() {
+        val testObserver = lufthansaApi.authenticate(
+            key = KEY,
+            secret = SECRET
+        ).flatMap {
+            lufthansaApi.getAirport(
+                authorization = "Bearer ${it.accessToken}",
+                airportCode = "ANY_TEXT"
+            )
+        }.test()
+
+        testObserver.assertError { error ->
+            (error as HttpException).code() == BAD_REQUEST
         }
     }
 
