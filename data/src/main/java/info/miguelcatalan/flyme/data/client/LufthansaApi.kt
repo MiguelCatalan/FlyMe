@@ -2,6 +2,7 @@ package info.miguelcatalan.flyme.data.client
 
 import info.miguelcatalan.flyme.data.airport.AirportsResponse
 import info.miguelcatalan.flyme.data.auth.AuthResponse
+import info.miguelcatalan.flyme.data.schedules.SchedulesResponse
 import io.reactivex.Observable
 import retrofit2.http.*
 
@@ -22,4 +23,13 @@ interface LufthansaApi {
         @Query("limit") max: Int,
         @Query("offset") offset: Int
     ): Observable<AirportsResponse>
+
+    @GET("operations/schedules/{departureAirportCode}/{arrivalAirportCode}/{date}")
+    @Headers("Accept: application/json")
+    fun getSchedules(
+        @Header("Authorization") authorization: String,
+        @Path("departureAirportCode") departureAirportCode: String,
+        @Path("arrivalAirportCode") arrivalAirportCode: String,
+        @Path("date") date: String
+    ): Observable<SchedulesResponse>
 }

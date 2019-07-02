@@ -2,6 +2,7 @@ package info.miguelcatalan.flyme.data.client
 
 import org.junit.Test
 import retrofit2.HttpException
+import java.util.*
 
 class LufthansaApiTest {
 
@@ -59,6 +60,32 @@ class LufthansaApiTest {
         testObserver.assertComplete()
         testObserver.assertValue {
             it.airportsResource.airports.airports.size == 5
+        }
+    }
+
+    @Test
+    fun `should return a list of schedules`() {
+        val departureAirportCode = "BCN"
+        val arrivalAirportCode = "MAD"
+
+        val testObserver = lufthansaApi.authenticate(
+            key = KEY,
+            secret = SECRET
+        ).flatMap {
+            lufthansaApi.getSchedules(
+                authorization = "Bearer ${it.accessToken}",
+                departureAirportCode = departureAirportCode,
+                arrivalAirportCode = arrivalAirportCode,
+                date = "2019-07-20"
+            )
+        }.test()
+
+        testObserver.assertComplete()
+        testObserver.assertValue {
+            it.scheduleResource.schedules.isNotEmpty() &&
+                    it.scheduleResource.schedules.first().let { schedule ->
+                        schedule.flights.isNotEmpty()
+                    }
         }
     }
 }
