@@ -3,6 +3,7 @@ package info.miguelcatalan.flyme.presentation.search
 import androidx.lifecycle.MutableLiveData
 import info.miguelcatalan.flyme.domain.airport.Airport
 import info.miguelcatalan.flyme.domain.airport.SearchForAirport
+import info.miguelcatalan.flyme.domain.notifier.Notifier
 import info.miguelcatalan.flyme.presentation.base.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
@@ -10,7 +11,8 @@ import io.reactivex.subjects.PublishSubject
 import java.util.concurrent.TimeUnit
 
 class SearchViewModel(
-    private val searchForAirport: SearchForAirport
+    private val searchForAirport: SearchForAirport,
+    private val notifier: Notifier
 ) : BaseViewModel() {
 
     companion object {
@@ -41,11 +43,15 @@ class SearchViewModel(
                 isLoading.value = true
                 searchForAirport(it)
             }
-            .subscribeBy(onNext = {
-                isLoading.value = false
-                airports.value = it
-            }).addDisposableTo(disposableBag)
-
+            .subscribeBy(
+                onNext = {
+                    isLoading.value = false
+                    airports.value = it
+                }, onError = {
+                    notifier.show(message = it.message!!)
+                    airports.value = emptyList()
+                }
+            ).addDisposableTo(disposableBag)
     }
 
     private fun resetSearch() {

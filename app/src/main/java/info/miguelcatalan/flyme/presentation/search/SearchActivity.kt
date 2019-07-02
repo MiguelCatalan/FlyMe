@@ -15,6 +15,7 @@ import info.miguelcatalan.flyme.presentation.search.adapter.AirportAdapter
 import info.miguelcatalan.flyme.presentation.search.adapter.AirportItem
 import kotlinx.android.synthetic.main.search_layout.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class SearchActivity : AppCompatActivity() {
 
@@ -24,7 +25,7 @@ class SearchActivity : AppCompatActivity() {
         const val KEY_TYPE = "key_type"
     }
 
-    private val searchViewModel: SearchViewModel by viewModel()
+    private val searchViewModel: SearchViewModel by viewModel { parametersOf(this@SearchActivity) }
     private val airportAdapter = AirportAdapter()
 
     private lateinit var groupLayoutManager: LinearLayoutManager
