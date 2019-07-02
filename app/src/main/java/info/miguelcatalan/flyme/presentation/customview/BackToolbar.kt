@@ -11,9 +11,15 @@ class BackToolbar @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
+
+    private var onBackPressedCallback: () -> Unit = {}
+
     init {
         inflate(context, R.layout.toolbar_back, this)
     }
 
+    fun onBackPressed(callback: () -> Unit = {}) {
+        onBackPressedCallback = callback
+    }
 
 }
