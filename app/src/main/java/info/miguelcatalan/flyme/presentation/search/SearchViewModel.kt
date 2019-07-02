@@ -24,6 +24,8 @@ class SearchViewModel(
 
     private val subject = PublishSubject.create<String>()
 
+    lateinit var stopType: SelectionType
+
     init {
         initSearch()
     }

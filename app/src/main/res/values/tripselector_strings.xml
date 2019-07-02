@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="selector_title">Get your last minute flights for today</string>
+    <string name="selector_stop_hint_origin">From where?</string>
+    <string name="selector_stop_hint_destination">Your destination?</string>
+    <string name="selector_search">Find flights</string>
+</resources>

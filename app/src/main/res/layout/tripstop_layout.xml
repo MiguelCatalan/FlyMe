@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:orientation="horizontal">
+
+    <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/stopIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_margin="8dp"
+            android:layout_gravity="center_vertical"
+            app:srcCompat="@drawable/ic_search"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stopTitle"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:padding="8dp"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:background="?selectableItemBackground"
+            android:textAppearance="@style/Heading2"
+            tools:text="Barcelona (BCN)"/>
+</LinearLayout>

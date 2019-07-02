@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <Button
+            android:id="@+id/mainButton"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            style="?android:attr/borderlessButtonStyle"
+            android:background="@drawable/button_states"
+            android:textAppearance="@style/Title2"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            tools:text="This is a test"/>
+</FrameLayout>

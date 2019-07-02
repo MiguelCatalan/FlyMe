@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+>
+
+    <data>
+        <variable
+                name="viewModel"
+                type="info.miguelcatalan.flyme.presentation.tripselector.TripSelectorViewModel"/>
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/aluminium"
+            android:paddingTop="72dp"
+            android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Heading1"
+                android:layout_margin="16dp"
+                android:text="@string/selector_title"/>
+
+        <info.miguelcatalan.flyme.presentation.customview.ShadowLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                <info.miguelcatalan.flyme.presentation.customview.TripStopView
+                        android:id="@+id/originStop"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                <info.miguelcatalan.flyme.presentation.customview.TripStopView
+                        android:id="@+id/destinationStop"
+                        android:layout_marginTop="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </info.miguelcatalan.flyme.presentation.customview.ShadowLayout>
+
+        <info.miguelcatalan.flyme.presentation.customview.MainButton
+                android:id="@+id/searchFlights"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_gravity="end"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>
+
