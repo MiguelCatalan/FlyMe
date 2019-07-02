@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.xwray.groupie.OnItemClickListener
 import info.miguelcatalan.flyme.R
 import info.miguelcatalan.flyme.databinding.SearchLayoutBinding
+import info.miguelcatalan.flyme.presentation.customview.BackToolbarConfiguration
 import info.miguelcatalan.flyme.presentation.search.adapter.AirportAdapter
 import info.miguelcatalan.flyme.presentation.search.adapter.AirportItem
 import kotlinx.android.synthetic.main.search_layout.*
@@ -31,8 +32,9 @@ class SearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initBinding()
-        configureList()
         searchViewModel.stopType = intent.getSerializableExtra(KEY_TYPE) as SelectionType
+        configureList()
+        configureView()
     }
 
     private fun initBinding() {
@@ -44,6 +46,25 @@ class SearchActivity : AppCompatActivity() {
             viewModel = searchViewModel
         }
     }
+
+    private fun configureView() {
+        searchViewModel.getSearchTerm().observe(this, Observer {
+            searchViewModel.search(it)
+        })
+
+        toolbar.configuration = BackToolbarConfiguration(
+            title = when (searchViewModel.stopType) {
+                SelectionType.ORIGIN -> R.string.search_origin
+                SelectionType.DESTINATION -> R.string.search_destination
+            }
+        )
+
+        toolbar.onBackPressed {
+            setResult(Activity.RESULT_CANCELED)
+            onBackPressed()
+        }
+    }
+
 
     private fun configureList() {
         airportAdapter.apply {
@@ -60,10 +81,6 @@ class SearchActivity : AppCompatActivity() {
 
         searchViewModel.getAirports().observe(this, Observer {
             airportAdapter.updateAirports(it)
-        })
-
-        searchViewModel.getSearchTerm().observe(this, Observer {
-            searchViewModel.search(it)
         })
 
         searchViewModel.getIsLoading().observe(this, Observer {
