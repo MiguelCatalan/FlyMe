@@ -13,7 +13,7 @@
             android:supportsRtl="false"
             tools:ignore="AllowBackup,GoogleAppIndexingWarning"
             android:theme="@style/AppTheme">
-        <activity android:name=".presentation.search.SearchActivity"
+        <activity android:name=".presentation.tripselector.TripSelectorActivity"
                   android:theme="@style/AppTheme.NoTitle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -21,6 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".presentation.search.SearchActivity"
+                  android:theme="@style/AppTheme.NoTitle"/>
     </application>
 
 </manifest>
