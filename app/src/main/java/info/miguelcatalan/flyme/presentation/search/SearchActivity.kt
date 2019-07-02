@@ -1,5 +1,6 @@
 package info.miguelcatalan.flyme.presentation.search
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -10,10 +11,17 @@ import com.xwray.groupie.OnItemClickListener
 import info.miguelcatalan.flyme.R
 import info.miguelcatalan.flyme.databinding.SearchLayoutBinding
 import info.miguelcatalan.flyme.presentation.search.adapter.AirportAdapter
+import info.miguelcatalan.flyme.presentation.search.adapter.AirportItem
 import kotlinx.android.synthetic.main.search_layout.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SearchActivity : AppCompatActivity() {
+
+    companion object {
+        const val REQUEST_CODE = 34598
+        const val KEY_AIRPORT = "key_airport"
+        const val KEY_TYPE = "key_type"
+    }
 
     private val searchViewModel: SearchViewModel by viewModel()
     private val airportAdapter = AirportAdapter()
@@ -24,6 +32,7 @@ class SearchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         initBinding()
         configureList()
+        searchViewModel.stopType = intent.getSerializableExtra(KEY_TYPE) as SelectionType
     }
 
     private fun initBinding() {
@@ -64,6 +73,15 @@ class SearchActivity : AppCompatActivity() {
 
     private fun getOnItemClickListener(): OnItemClickListener =
         OnItemClickListener { item, _ ->
-
+            val returnIntent = intent
+            returnIntent.putExtra(KEY_AIRPORT, (item as AirportItem).airport)
+            returnIntent.putExtra(KEY_TYPE, searchViewModel.stopType)
+            setResult(Activity.RESULT_OK, returnIntent)
+            finish()
         }
+}
+
+enum class SelectionType {
+    ORIGIN,
+    DESTINATION
 }
