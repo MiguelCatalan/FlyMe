@@ -1,7 +1,10 @@
 package info.miguelcatalan.flyme.injector
 
 import info.miguelcatalan.flyme.domain.repository.ApplicationTimeProvider
+import info.miguelcatalan.flyme.notifier.ToastNotifier
+import info.miguelcatalan.flyme.presentation.itinerarylist.ItineraryListViewModel
 import info.miguelcatalan.flyme.presentation.navigator.AppNavigator
+import info.miguelcatalan.flyme.presentation.search.SearchActivity
 import info.miguelcatalan.flyme.presentation.search.SearchViewModel
 import info.miguelcatalan.flyme.presentation.tripselector.TripSelectorActivity
 import info.miguelcatalan.flyme.presentation.tripselector.TripSelectorViewModel
@@ -16,6 +19,7 @@ val appModule: Module = module {
         ApplicationTimeProvider()
     }
 
-    viewModel { SearchViewModel(get()) }
+    viewModel { (activity: SearchActivity) -> SearchViewModel(get(), ToastNotifier(activity)) }
     viewModel { (activity: TripSelectorActivity) -> TripSelectorViewModel(AppNavigator(activity)) }
+    viewModel { ItineraryListViewModel() }
 }
