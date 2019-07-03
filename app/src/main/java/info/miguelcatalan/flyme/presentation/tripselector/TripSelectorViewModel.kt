@@ -27,7 +27,10 @@ class TripSelectorViewModel(
     }
 
     fun onSearchFlightsPressed() {
-
+        navigator.navigateToItineraryList(
+            origin = origin.value!!,
+            destination = destination.value!!
+        )
     }
 
     fun setOrigin(airport: Airport) {
