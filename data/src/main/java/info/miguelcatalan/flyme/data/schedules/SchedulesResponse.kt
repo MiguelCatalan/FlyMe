@@ -1,11 +1,14 @@
 package info.miguelcatalan.flyme.data.schedules
 
+import android.annotation.SuppressLint
 import com.google.gson.annotations.SerializedName
 import info.miguelcatalan.flyme.domain.schedule.AirportInfo
 import info.miguelcatalan.flyme.domain.schedule.Carrier
 import info.miguelcatalan.flyme.domain.schedule.Flight
 import info.miguelcatalan.flyme.domain.schedule.Schedule
+import java.text.SimpleDateFormat
 import java.util.*
+
 
 data class SchedulesResponse(
     @SerializedName("ScheduleResource")
@@ -62,7 +65,7 @@ data class AirportTimeApi(
 
     fun toDomain(): AirportInfo = AirportInfo(
         airportCode = airportCode,
-        dateTime = scheduledTimeLocal.dateTime,
+        dateTime = scheduledTimeLocal.dateTime.toLocalDate(),
         terminal = terminal?.name
     )
 }
@@ -89,4 +92,10 @@ data class MarketingCarrierApi(
         airlineID = airlineID,
         flightNumber = flightNumber
     )
+}
+
+@SuppressLint("SimpleDateFormat")
+fun String.toLocalDate(): Date {
+    return SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(this)
+
 }
