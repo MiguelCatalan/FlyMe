@@ -10,6 +10,7 @@ sourceSets {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}"
     implementation "io.reactivex.rxjava2:rxjava:${rxJavaVersion}"
+    implementation "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}"
 
     testImplementation "junit:junit:$junitVersion"
     testImplementation "org.amshove.kluent:kluent:${kluentVersion}"

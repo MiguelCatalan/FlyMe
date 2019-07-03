@@ -5,6 +5,7 @@ ext {
 
     // RxJava
     rxJavaVersion = '2.2.8'
+    rxKotlinVersion = '2.0.3'
     rxAndroidVersion = '2.1.1'
 
     //Android
