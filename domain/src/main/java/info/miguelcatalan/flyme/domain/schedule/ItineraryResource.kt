@@ -1,6 +1,7 @@
 package info.miguelcatalan.flyme.domain.schedule
 
 import info.miguelcatalan.flyme.domain.airport.Airport
+import info.miguelcatalan.flyme.domain.airport.AirportDetailNotFoundError
 import info.miguelcatalan.flyme.domain.repository.RxBaseRepository
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.subscribeBy
@@ -13,8 +14,16 @@ class ItineraryResource(
 
     fun getItineraries(query: ScheduleQuery): Observable<List<Itinerary>> {
         return schedulesRepository.getByKey(query)
+            .flatMap {
+                Observable.fromIterable(it.options)
+            }
+            .filter { schedule ->
+                schedule.flights.first().departure.airportCode == query.departureAirportCode
+                        && schedule.flights.last().arrival.airportCode == query.arrivalAirportCode
+            }
+            .toList().toObservable()
             .map {
-                it.options.map { scheduleOption ->
+                it.map { scheduleOption ->
                     populateItinerariesWithAirportsFromCodes(scheduleOption)
                 }
             }
@@ -25,11 +34,21 @@ class ItineraryResource(
         val disposable = airportRepository.getByKey(airportCode).subscribeBy(
             onNext = {
                 airport = it
+            },
+            onError = {
+                if (it is AirportDetailNotFoundError) {
+                    airport = Airport.empty(
+                        airportCode = airportCode
+                    )
+                } else {
+                    throw it
+                }
             }
         )
         disposable.dispose()
         return airport
     }
+
 
     private fun populateItinerariesWithAirportsFromCodes(scheduleOption: Schedule): Itinerary {
         return Itinerary(

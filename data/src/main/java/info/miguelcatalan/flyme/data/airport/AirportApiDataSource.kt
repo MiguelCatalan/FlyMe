@@ -2,6 +2,7 @@ package info.miguelcatalan.flyme.data.airport
 
 import info.miguelcatalan.flyme.data.client.LufthansaApi
 import info.miguelcatalan.flyme.domain.airport.Airport
+import info.miguelcatalan.flyme.domain.airport.AirportDetailNotFoundError
 import info.miguelcatalan.flyme.domain.auth.Auth
 import info.miguelcatalan.flyme.domain.repository.RxBaseRepository
 import info.miguelcatalan.flyme.domain.repository.RxReadableDataSource
@@ -26,7 +27,7 @@ class AirportApiDataSource(
                 ).map {
                     it.airportResource.airport.airport.toDomain()
                 }
-            }
+            }.onErrorResumeNext(Observable.error(AirportDetailNotFoundError()))
     }
 
     override fun getAll(): Observable<List<Airport>> {

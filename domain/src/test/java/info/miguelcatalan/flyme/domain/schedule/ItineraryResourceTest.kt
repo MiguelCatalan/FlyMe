@@ -4,12 +4,17 @@ import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import info.miguelcatalan.flyme.domain.airport.Airport
+import info.miguelcatalan.flyme.domain.airport.AirportDetailNotFoundError
 import info.miguelcatalan.flyme.domain.airport.AirportMother
 import info.miguelcatalan.flyme.domain.repository.RxBaseRepository
+import info.miguelcatalan.flyme.domain.utils.value
 import io.reactivex.Observable
+import org.amshove.kluent.`should equal to`
 import org.amshove.kluent.`should not be`
 import org.junit.Before
 import org.junit.Test
+import java.util.*
+import kotlin.NoSuchElementException
 
 class ItineraryResourceTest {
 
@@ -44,5 +49,29 @@ class ItineraryResourceTest {
         )
 
         resource.getAirportByCode("any_code")
+    }
+
+    @Test
+    fun `should ignore schedules if origin and destination are not the same has requested`() {
+        val query = ScheduleQuery(
+            departureAirportCode = "BCN",
+            arrivalAirportCode = "MAD",
+            date = Date()
+        )
+        val scheduleOptions = ScheduleMother.givenAScheduleOptionsWithTwoRightAndOneWrongItineraries(query)
+        whenever(
+            airportRepository.getByKey(any())
+        ).thenReturn(
+            Observable.error(AirportDetailNotFoundError())
+        )
+        whenever(
+            schedulesRepository.getByKey(any())
+        ).thenReturn(
+            Observable.just(scheduleOptions)
+        )
+
+        val testObserver = resource.getItineraries(query).test()
+
+        testObserver.value().size `should equal to` 2
     }
 }
