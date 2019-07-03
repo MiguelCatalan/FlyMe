@@ -39,7 +39,9 @@ class ItineraryListViewModel(
         searchForItineraries(
             departureAirportCode = origin.value!!.key,
             arrivalAirportCode = destination.value!!.key
-        ).subscribeBy(
+        ).doOnSubscribe {
+            isLoading.value = true
+        }.subscribeBy(
             onNext = {
                 isLoading.value = false
                 itineraries.value = it
