@@ -3,4 +3,7 @@
     <string name="itinerary_title">Choose the best itinerary</string>
     <string name="itinerary_loading">Searching for the best flights…</string>
     <string name="itinerary_empty">We haven\'t found any results</string>
+
+    <string name="itinerary_scales_direct">Direct flight</string>
+    <string name="itinerary_scales_with_stops">%1$s scales</string>
 </resources>
