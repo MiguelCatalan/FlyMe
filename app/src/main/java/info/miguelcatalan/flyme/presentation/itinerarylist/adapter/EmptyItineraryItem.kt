@@ -5,6 +5,6 @@ import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import info.miguelcatalan.flyme.R
 
 class EmptyItineraryItem : Item() {
-    override fun getLayout(): Int = R.layout.search_item_empty
+    override fun getLayout(): Int = R.layout.itinerary_item_empty
     override fun bind(viewHolder: ViewHolder, position: Int) {}
 }

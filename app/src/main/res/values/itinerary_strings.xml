@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="itinerary_title">Choose the best itinerary</string>
-    <string name="itinerary_loading">Searching for the best itineraries…</string>
+    <string name="itinerary_loading">Searching for the best flights…</string>
     <string name="itinerary_empty">We haven\'t found any results</string>
 </resources>
