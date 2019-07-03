@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+                name="viewModel"
+                type="info.miguelcatalan.flyme.presentation.scale.ScaleViewModel"/>
+    </data>
+
+    <FrameLayout android:layout_width="match_parent"
+                 android:layout_height="match_parent">
+
+        <fragment
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/map"
+                tools:context=".presentation.scale.ScaleActivity"
+                android:name="com.google.android.gms.maps.SupportMapFragment"/>
+
+        <info.miguelcatalan.flyme.presentation.customview.ItineraryView
+                android:id="@+id/itineraryItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_gravity="bottom"/>
+
+    </FrameLayout>
+</layout>
