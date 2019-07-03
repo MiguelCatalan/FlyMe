@@ -7,10 +7,12 @@ import info.miguelcatalan.flyme.domain.notifier.Notifier
 import info.miguelcatalan.flyme.domain.schedule.Itinerary
 import info.miguelcatalan.flyme.domain.schedule.SearchForItineraries
 import info.miguelcatalan.flyme.presentation.base.BaseViewModel
+import info.miguelcatalan.flyme.presentation.navigator.AppNavigator
 import io.reactivex.rxkotlin.subscribeBy
 
 class ItineraryListViewModel(
     private val searchForItineraries: SearchForItineraries,
+    private val navigator: AppNavigator,
     private val notifier: Notifier
 ) : BaseViewModel() {
 
@@ -53,5 +55,9 @@ class ItineraryListViewModel(
                 itineraries.value = emptyList()
             }
         ).addDisposableTo(disposableBag)
+    }
+
+    fun onItinerarySelected(itinerary: Itinerary) {
+        navigator.navigateToScaleView(itinerary)
     }
 }

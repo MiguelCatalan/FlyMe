@@ -14,6 +14,7 @@ import info.miguelcatalan.flyme.presentation.customview.BackToolbarConfiguration
 import info.miguelcatalan.flyme.presentation.customview.TripStopConfiguration
 import info.miguelcatalan.flyme.presentation.customview.TripStopType
 import info.miguelcatalan.flyme.presentation.itinerarylist.adapter.ItineraryAdapter
+import info.miguelcatalan.flyme.presentation.itinerarylist.adapter.ItineraryItem
 import kotlinx.android.synthetic.main.itinerary_list_layout.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -64,6 +65,12 @@ class ItineraryListActivity : AppCompatActivity() {
         itineraryListViewModel.isLoading.observe(this, Observer {
             itineraryAdapter.isLoading = it
         })
+
+        itineraryAdapter.apply {
+            setOnItemClickListener { item, _ ->
+                itineraryListViewModel.onItinerarySelected((item as ItineraryItem).itinerary)
+            }
+        }
     }
 
     private fun configureView() {
