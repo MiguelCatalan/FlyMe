@@ -8,7 +8,7 @@ import info.miguelcatalan.flyme.domain.schedule.ScheduleOptions
 import info.miguelcatalan.flyme.domain.schedule.ScheduleQuery
 import io.reactivex.Observable
 
-class AirportApiDataSource(
+class ScheduleApiDataSource(
     private val lufthansaApi: LufthansaApi,
     private val authRepository: RxBaseRepository<String, Auth>
 ) : RxReadableDataSource<ScheduleQuery, ScheduleOptions> {
