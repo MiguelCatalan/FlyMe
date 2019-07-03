@@ -7,11 +7,14 @@ import info.miguelcatalan.flyme.domain.schedule.Itinerary
 
 class ItineraryItem(
     val itinerary: Itinerary
+
 ) : BindableItem<ItineraryItemBinding>() {
 
+    val viewModel =  ItineraryItemViewModel()
     override fun getLayout(): Int = R.layout.itinerary_item
 
     override fun bind(viewBinding: ItineraryItemBinding, position: Int) {
-        viewBinding.itinerary = itinerary
+        viewBinding.viewModel = viewModel
+        viewModel.setItinerary(itinerary)
     }
 }
