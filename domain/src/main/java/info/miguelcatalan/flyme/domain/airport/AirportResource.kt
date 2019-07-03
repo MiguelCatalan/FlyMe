@@ -1,6 +1,5 @@
 package info.miguelcatalan.flyme.domain.airport
 
-import info.miguelcatalan.flyme.domain.logger.Logger
 import info.miguelcatalan.flyme.domain.repository.RxBaseRepository
 import io.reactivex.Observable
 

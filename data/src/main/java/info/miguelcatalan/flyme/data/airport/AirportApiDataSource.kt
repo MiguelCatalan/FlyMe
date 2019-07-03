@@ -2,6 +2,7 @@ package info.miguelcatalan.flyme.data.airport
 
 import info.miguelcatalan.flyme.data.client.LufthansaApi
 import info.miguelcatalan.flyme.domain.airport.Airport
+import info.miguelcatalan.flyme.domain.airport.AirportDetailNotFoundError
 import info.miguelcatalan.flyme.domain.auth.Auth
 import info.miguelcatalan.flyme.domain.repository.RxBaseRepository
 import info.miguelcatalan.flyme.domain.repository.RxReadableDataSource
@@ -18,7 +19,15 @@ class AirportApiDataSource(
     }
 
     override fun getByKey(key: String): Observable<Airport> {
-        return Observable.just(Airport("", "", null))
+        return authRepository.getByKey(Auth.KEY)
+            .flatMap { auth ->
+                lufthansaApi.getAirport(
+                    authorization = "Bearer ${auth.accessToken}",
+                    airportCode = key
+                ).map {
+                    it.airportResource.airport.airport.toDomain()
+                }
+            }.onErrorResumeNext(Observable.error(AirportDetailNotFoundError()))
     }
 
     override fun getAll(): Observable<List<Airport>> {
@@ -85,7 +94,6 @@ class AirportApiDataSource(
             )
         )
     }
-
 }
 
 data class PaginatedData(

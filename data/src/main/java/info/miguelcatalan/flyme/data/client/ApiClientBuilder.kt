@@ -4,10 +4,11 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import info.miguelcatalan.flyme.data.airport.Names
 import info.miguelcatalan.flyme.data.airport.NamesApiDeserializer
+import info.miguelcatalan.flyme.data.schedules.ScheduleApi
+import info.miguelcatalan.flyme.data.schedules.ScheduleApiDeserializer
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-
 
 class ApiClientBuilder(
     baseUrl: String
@@ -15,6 +16,7 @@ class ApiClientBuilder(
 
     private val gson: Gson =
         GsonBuilder()
+            .registerTypeAdapter(ScheduleApi::class.java, ScheduleApiDeserializer())
             .registerTypeAdapter(Names::class.java, NamesApiDeserializer())
             .create()
 

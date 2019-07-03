@@ -1,0 +1,145 @@
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="info.miguelcatalan.flyme.presentation.itinerarylist.adapter.ItineraryItemViewModel"/>
+    </data>
+
+    <info.miguelcatalan.flyme.presentation.customview.ShadowLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+            <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="start">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/departureCode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/Heading1"
+                            android:text="@{viewModel.departure.airportCode}"
+                            tools:text="MAD"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/departureName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/Caption"
+                            android:text="@{viewModel.departure.name}"
+                            tools:text="Madrid Barajas"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/Body2"
+                        android:text="@{viewModel.scaleNumber}"
+                        tools:text="2 scales"/>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="end">
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/arrivalCode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:textAppearance="@style/Heading1"
+                            android:text="@{viewModel.arrival.airportCode}"
+                            tools:text="BCN"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/arrivalName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:textAppearance="@style/Caption"
+                            android:maxLines="1"
+                            android:text="@{viewModel.arrival.name}"
+                            tools:text="El prat"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </FrameLayout>
+
+            <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="start">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/departureTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/Heading1"
+                            android:text="@{viewModel.departureTime}"
+                            tools:text="10:05"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/departureDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/Caption"
+                            android:text="@{viewModel.departureDate}"
+                            tools:text="Mar 22, Mon"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="end">
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/arrivalTme"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:textAppearance="@style/Heading1"
+                            android:text="@{viewModel.arrivalTime}"
+                            tools:text="12:35"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/arrivalDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:textAppearance="@style/Caption"
+                            android:text="@{viewModel.arrivalDate}"
+                            tools:text="Mar 22, Mon"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </FrameLayout>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </info.miguelcatalan.flyme.presentation.customview.ShadowLayout>
+</layout>

@@ -9,6 +9,20 @@ data class Airport(
     val location: Location? = null
 ) : Identifiable<String>, Serializable {
 
+    companion object {
+        fun empty(
+            name: String = "Missing name",
+            airportCode: String = "Missing code",
+            location: Location? = null
+        ): Airport {
+            return Airport(
+                name = name,
+                airportCode = airportCode,
+                location = location
+            )
+        }
+    }
+
     override val key: String
         get() = airportCode
 }

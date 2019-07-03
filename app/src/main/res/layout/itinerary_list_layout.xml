@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+                name="viewModel"
+                type="info.miguelcatalan.flyme.presentation.itinerarylist.ItineraryListViewModel"/>
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/aluminium">
+
+        <info.miguelcatalan.flyme.presentation.customview.BackToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"/>
+        <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="16dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:background="@color/white">
+
+            <info.miguelcatalan.flyme.presentation.customview.TripStopView
+                    android:id="@+id/originStop"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <info.miguelcatalan.flyme.presentation.customview.TripStopView
+                    android:id="@+id/destinationStop"
+                    android:layout_marginTop="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/itineraryList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

@@ -2,10 +2,12 @@ package info.miguelcatalan.flyme.presentation.customview
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.widget.FrameLayout
 import info.miguelcatalan.flyme.R
 import info.miguelcatalan.flyme.domain.airport.Airport
 import kotlinx.android.synthetic.main.tripstop_layout.view.*
+
 
 data class TripStopConfiguration(
     val stopType: TripStopType = TripStopType.Origin,
@@ -54,6 +56,13 @@ class TripStopView @JvmOverloads constructor(
 
         when (configuration.selectable) {
             true -> {
+                val outValue = TypedValue()
+                context.theme.resolveAttribute(
+                    android.R.attr.selectableItemBackground,
+                    outValue,
+                    true
+                )
+                stopTitle.setBackgroundResource(outValue.resourceId)
                 stopTitle.isClickable = true
                 stopTitle.isFocusable = true
                 stopTitle.setOnClickListener {
@@ -61,6 +70,7 @@ class TripStopView @JvmOverloads constructor(
                 }
             }
             false -> {
+                stopTitle.setBackgroundColor(resources.getColor(R.color.transparent))
                 stopTitle.isClickable = false
                 stopTitle.isFocusable = false
                 stopTitle.setOnClickListener {}

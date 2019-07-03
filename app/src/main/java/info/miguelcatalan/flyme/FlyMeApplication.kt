@@ -23,7 +23,7 @@ class FlyMeApplication : Application() {
             androidLogger()
             androidContext(this@FlyMeApplication)
             androidFileProperties()
-            modules(listOf(appModule, dataModule, executorModule, airportModule, authModule))
+            modules(listOf(appModule, dataModule, executorModule, airportModule, authModule, itineraryModule))
         }
     }
 
