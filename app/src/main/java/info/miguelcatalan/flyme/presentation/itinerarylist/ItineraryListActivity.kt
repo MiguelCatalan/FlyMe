@@ -1,5 +1,6 @@
 package info.miguelcatalan.flyme.presentation.itinerarylist
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import info.miguelcatalan.flyme.R
 import info.miguelcatalan.flyme.databinding.ItineraryListLayoutBinding
 import info.miguelcatalan.flyme.domain.airport.Airport
+import info.miguelcatalan.flyme.presentation.customview.BackToolbarConfiguration
 import info.miguelcatalan.flyme.presentation.customview.TripStopConfiguration
 import info.miguelcatalan.flyme.presentation.customview.TripStopType
 import info.miguelcatalan.flyme.presentation.itinerarylist.adapter.ItineraryAdapter
@@ -34,24 +36,6 @@ class ItineraryListActivity : AppCompatActivity() {
         itineraryListViewModel.setDestination(intent.getSerializableExtra(KEY_DESTINATION) as Airport)
         configureList()
         configureView()
-    }
-
-    private fun configureView() {
-        originStop.configuration = TripStopConfiguration(
-            stopType = TripStopType.Origin,
-            selectable = false
-        )
-        itineraryListViewModel.origin.observe(this, Observer {
-            originStop.stop = it
-        })
-
-        destinationStop.configuration = TripStopConfiguration(
-            stopType = TripStopType.Destination,
-            selectable = false
-        )
-        itineraryListViewModel.destination.observe(this, Observer {
-            destinationStop.stop = it
-        })
     }
 
     private fun initBinding() {
@@ -80,5 +64,32 @@ class ItineraryListActivity : AppCompatActivity() {
         itineraryListViewModel.isLoading.observe(this, Observer {
             itineraryAdapter.isLoading = it
         })
+    }
+
+    private fun configureView() {
+        originStop.configuration = TripStopConfiguration(
+            stopType = TripStopType.Origin,
+            selectable = false
+        )
+        itineraryListViewModel.origin.observe(this, Observer {
+            originStop.stop = it
+        })
+
+        destinationStop.configuration = TripStopConfiguration(
+            stopType = TripStopType.Destination,
+            selectable = false
+        )
+        itineraryListViewModel.destination.observe(this, Observer {
+            destinationStop.stop = it
+        })
+
+        toolbar.configuration = BackToolbarConfiguration(
+            title = R.string.itinerary_title
+        )
+
+        toolbar.onBackPressed {
+            setResult(Activity.RESULT_CANCELED)
+            onBackPressed()
+        }
     }
 }
