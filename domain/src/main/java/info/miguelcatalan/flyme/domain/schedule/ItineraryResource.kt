@@ -1,11 +1,9 @@
 package info.miguelcatalan.flyme.domain.schedule
 
 import info.miguelcatalan.flyme.domain.airport.Airport
-import info.miguelcatalan.flyme.domain.airport.AirportDetailNotFoundError
 import info.miguelcatalan.flyme.domain.repository.RxBaseRepository
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.subscribeBy
-import java.util.*
 
 class ItineraryResource(
     private val airportRepository: RxBaseRepository<String, Airport>,
@@ -29,20 +27,16 @@ class ItineraryResource(
             }
     }
 
-    fun getAirportByCode(airportCode: String): Airport? {
-        var airport: Airport? = null
+    fun getAirportByCode(airportCode: String): Airport {
+        var airport: Airport = Airport.empty()
         val disposable = airportRepository.getByKey(airportCode).subscribeBy(
             onNext = {
                 airport = it
             },
             onError = {
-                if (it is AirportDetailNotFoundError) {
-                    airport = Airport.empty(
-                        airportCode = airportCode
-                    )
-                } else {
-                    throw it
-                }
+                airport = airport.copy(
+                    airportCode = airportCode
+                )
             }
         )
         disposable.dispose()
@@ -52,8 +46,8 @@ class ItineraryResource(
 
     private fun populateItinerariesWithAirportsFromCodes(scheduleOption: Schedule): Itinerary {
         return Itinerary(
-            departure = getAirportByCode(scheduleOption.departureAirportCode)!!,
-            arrival = getAirportByCode(scheduleOption.arrivalAirportCode)!!,
+            departure = getAirportByCode(scheduleOption.departureAirportCode),
+            arrival = getAirportByCode(scheduleOption.arrivalAirportCode),
             date = scheduleOption.date,
             scales = scheduleOption.flights.map { flight ->
                 Scale(
@@ -67,8 +61,8 @@ class ItineraryResource(
 
     private fun AirportInfo.toStopInfo(): StopInfo {
         return StopInfo(
-            airport = getAirportByCode(airportCode)!!,
-            localDate = Date(), //TODO see this
+            airport = getAirportByCode(airportCode),
+            localDate = dateTime,
             terminal = terminal
         )
     }

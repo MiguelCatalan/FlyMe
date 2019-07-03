@@ -14,7 +14,6 @@ import org.amshove.kluent.`should not be`
 import org.junit.Before
 import org.junit.Test
 import java.util.*
-import kotlin.NoSuchElementException
 
 class ItineraryResourceTest {
 
@@ -40,15 +39,18 @@ class ItineraryResourceTest {
         result `should not be` null
     }
 
-    @Test(expected = NoSuchElementException::class)
-    fun `should return an exception if fails`() {
+    @Test
+    fun `should return an airport with just the code if fails`() {
+        val airportCode = "MAD"
         whenever(
             airportRepository.getByKey(any())
-        ).thenThrow(
-            NoSuchElementException()
+        ).thenReturn(
+            Observable.error(AirportDetailNotFoundError())
         )
 
-        resource.getAirportByCode("any_code")
+        val airport = resource.getAirportByCode(airportCode)
+
+        airport.airportCode `should equal to` airportCode
     }
 
     @Test
