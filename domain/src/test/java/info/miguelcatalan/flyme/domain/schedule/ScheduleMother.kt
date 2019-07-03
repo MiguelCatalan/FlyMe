@@ -4,6 +4,23 @@ import java.util.*
 
 class ScheduleMother {
     companion object {
+
+        fun givenAnySchedule(
+            departureAirportCode: String = "any",
+            arrivalAirportCode: String = "any",
+            date: Date = Date(),
+            flights: List<Flight> = listOf(
+                FlightMother.givenAnFlight()
+            )
+        ): Schedule {
+            return Schedule(
+                departureAirportCode = departureAirportCode,
+                arrivalAirportCode = arrivalAirportCode,
+                date = date,
+                flights = flights
+            )
+        }
+
         fun givenAScheduleOptionsWithTwoRightAndOneWrongItineraries(
             query: ScheduleQuery
         ): ScheduleOptions {
@@ -17,34 +34,17 @@ class ScheduleMother {
                             Flight(
                                 departure = AirportInfo(
                                     airportCode = query.departureAirportCode,
-                                    dateTime = "any"
+                                    dateTime = Date()
                                 ),
                                 arrival = AirportInfo(
                                     airportCode = query.arrivalAirportCode,
-                                    dateTime = "any"
+                                    dateTime = Date()
                                 ),
-                                carrier = giveAnyCarrier()
+                                carrier = CarrierMother.givenAnyCarrier()
                             )
                         )
                     ),
-                    Schedule(
-                        departureAirportCode = "any",
-                        arrivalAirportCode = "any",
-                        date = Date(),
-                        flights = listOf(
-                            Flight(
-                                departure = AirportInfo(
-                                    airportCode = "any",
-                                    dateTime = "any"
-                                ),
-                                arrival = AirportInfo(
-                                    airportCode = "any",
-                                    dateTime = "any"
-                                ),
-                                carrier = giveAnyCarrier()
-                            )
-                        )
-                    ),
+                    givenAnySchedule(),
                     Schedule(
                         departureAirportCode = query.departureAirportCode,
                         arrivalAirportCode = query.arrivalAirportCode,
@@ -53,22 +53,63 @@ class ScheduleMother {
                             Flight(
                                 departure = AirportInfo(
                                     airportCode = query.departureAirportCode,
-                                    dateTime = "any"
+                                    dateTime = Date()
                                 ),
                                 arrival = AirportInfo(
                                     airportCode = query.arrivalAirportCode,
-                                    dateTime = "any"
+                                    dateTime = Date()
                                 ),
-                                carrier = giveAnyCarrier()
+                                carrier = CarrierMother.givenAnyCarrier()
                             )
                         )
                     )
                 )
             )
         }
+    }
+}
 
-        fun giveAnyCarrier(): Carrier {
-            return Carrier(airlineID = "any", flightNumber = 0)
+class AirportInfoMother {
+    companion object {
+        fun givenAnyAirportInfo(
+            airportCode: String = "any",
+            dateTime: Date = Date(),
+            terminal: String? = null
+        ): AirportInfo {
+            return AirportInfo(
+                airportCode = airportCode,
+                dateTime = dateTime,
+                terminal = terminal
+            )
+        }
+    }
+}
+
+class FlightMother {
+    companion object {
+        fun givenAnFlight(
+            departure: AirportInfo = AirportInfoMother.givenAnyAirportInfo(),
+            arrival: AirportInfo = AirportInfoMother.givenAnyAirportInfo(),
+            carrier: Carrier = CarrierMother.givenAnyCarrier()
+        ): Flight {
+            return Flight(
+                departure = departure,
+                arrival = arrival,
+                carrier = carrier
+            )
+        }
+    }
+}
+
+class CarrierMother {
+    companion object {
+        fun givenAnyCarrier(
+            airlineID: String = "any", flightNumber: Int = 0
+        ): Carrier {
+            return Carrier(
+                airlineID = airlineID,
+                flightNumber = flightNumber
+            )
         }
     }
 }
