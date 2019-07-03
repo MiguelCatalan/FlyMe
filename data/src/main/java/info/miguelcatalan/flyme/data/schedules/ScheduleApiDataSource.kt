@@ -7,6 +7,8 @@ import info.miguelcatalan.flyme.domain.repository.RxReadableDataSource
 import info.miguelcatalan.flyme.domain.schedule.ScheduleOptions
 import info.miguelcatalan.flyme.domain.schedule.ScheduleQuery
 import io.reactivex.Observable
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ScheduleApiDataSource(
     private val lufthansaApi: LufthansaApi,
@@ -20,7 +22,7 @@ class ScheduleApiDataSource(
                     authorization = "Bearer ${auth.accessToken}",
                     departureAirportCode = key.departureAirportCode,
                     arrivalAirportCode = key.arrivalAirportCode,
-                    date = key.date.toString()
+                    date = key.date.toApiFormat()
                 ).map { schedulesResponse ->
                     val options = schedulesResponse.scheduleResource.schedules.map { it.toDomain() }
                     ScheduleOptions(options)
@@ -30,4 +32,9 @@ class ScheduleApiDataSource(
 
     override fun getAll(): Observable<List<ScheduleOptions>> = throw NotImplementedError()
 
+}
+
+fun Date.toApiFormat(): String {
+    val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    return formatter.format(this)
 }
