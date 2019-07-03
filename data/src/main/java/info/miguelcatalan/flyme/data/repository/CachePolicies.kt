@@ -23,5 +23,9 @@ class CachePolicyTtl(
         fun fiveMinutes(timeProvider: TimeProvider): CachePolicyTtl {
             return CachePolicyTtl(ttl = 5, timeUnit = TimeUnit.MINUTES, timeProvider = timeProvider)
         }
+
+        fun oneMinute(timeProvider: TimeProvider): CachePolicy {
+            return CachePolicyTtl(ttl = 1, timeUnit = TimeUnit.MINUTES, timeProvider = timeProvider)
+        }
     }
 }
