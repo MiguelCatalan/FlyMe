@@ -1,7 +1,7 @@
 package info.miguelcatalan.flyme.data.schedules
 
 import com.google.gson.annotations.SerializedName
-import info.miguelcatalan.flyme.domain.schedule.AirportTime
+import info.miguelcatalan.flyme.domain.schedule.AirportInfo
 import info.miguelcatalan.flyme.domain.schedule.Carrier
 import info.miguelcatalan.flyme.domain.schedule.Flight
 import info.miguelcatalan.flyme.domain.schedule.Schedule
@@ -60,7 +60,7 @@ data class AirportTimeApi(
     val terminal: TerminalApi?
 ) {
 
-    fun toDomain(): AirportTime = AirportTime(
+    fun toDomain(): AirportInfo = AirportInfo(
         airportCode = airportCode,
         dateTime = scheduledTimeLocal.dateTime,
         terminal = terminal?.name

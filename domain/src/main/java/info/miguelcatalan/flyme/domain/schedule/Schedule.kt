@@ -10,12 +10,12 @@ data class Schedule(
 )
 
 data class Flight(
-    val departure: AirportTime,
-    val arrival: AirportTime,
+    val departure: AirportInfo,
+    val arrival: AirportInfo,
     val carrier: Carrier
 )
 
-data class AirportTime(
+data class AirportInfo(
     val airportCode: String,
     val dateTime: String,
     val terminal: String? = null
