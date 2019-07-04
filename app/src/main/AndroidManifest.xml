@@ -20,7 +20,7 @@
                 android:value="@string/google_maps_key"/>
         <activity
                 android:name=".presentation.tripselector.TripSelectorActivity"
-                android:theme="@style/AppTheme.NoTitle">
+                android:theme="@style/AppTheme.NoTitle.Main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -33,9 +33,9 @@
         <activity
                 android:name=".presentation.itinerarylist.ItineraryListActivity"
                 android:theme="@style/AppTheme.NoTitle"/>
-    <activity
-            android:name=".presentation.scale.ScaleActivity"
-            android:theme="@style/AppTheme.NoTitle"/>
+        <activity
+                android:name=".presentation.scale.ScaleActivity"
+                android:theme="@style/AppTheme.NoTitle"/>
     </application>
 
 </manifest>

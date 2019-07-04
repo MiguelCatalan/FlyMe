@@ -1,0 +1,17 @@
+<resources>
+    <style name="AppTheme.NoTitle" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@color/white</item>
+    </style>
+
+    <style name="AppTheme.NoTitle.Main" parent="AppTheme.NoTitle">
+        <item name="android:statusBarColor">@color/aluminium</item>
+    </style>
+</resources>
