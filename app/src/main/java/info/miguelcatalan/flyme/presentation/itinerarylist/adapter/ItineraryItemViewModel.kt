@@ -48,14 +48,14 @@ class ItineraryItemViewModel(
         }
     }
 
-}
+    private fun Date.toReadableDate(): String {
+        val formatter = SimpleDateFormat("MMM dd, EEE", Locale.getDefault())
+        return formatter.format(this)
+    }
 
-fun Date.toReadableDate(): String {
-    val formatter = SimpleDateFormat("MMM dd, EEE", Locale.getDefault())
-    return formatter.format(this)
-}
+    private fun Date.toReadableTime(): String {
+        val formatter = SimpleDateFormat("HH:mm", Locale.getDefault())
+        return formatter.format(this)
+    }
 
-fun Date.toReadableTime(): String {
-    val formatter = SimpleDateFormat("HH:mm", Locale.getDefault())
-    return formatter.format(this)
 }
