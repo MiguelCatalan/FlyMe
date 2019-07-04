@@ -51,6 +51,10 @@ class ScaleActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun initViews() {
+        toolbar.onBackPressed {
+            onBackPressed()
+        }
+
         scaleViewModel.itineray.observe(this, Observer {
             itineraryItem.setItinerary(it)
             val locationMarkers = getLocationMarkers(it)
