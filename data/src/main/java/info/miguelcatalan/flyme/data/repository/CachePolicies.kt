@@ -20,12 +20,18 @@ class CachePolicyTtl(
 
     companion object {
 
+        fun oneMinute(timeProvider: TimeProvider): CachePolicy {
+            return CachePolicyTtl(ttl = 1, timeUnit = TimeUnit.MINUTES, timeProvider = timeProvider)
+        }
+
+        fun twoMinutes(timeProvider: TimeProvider): CachePolicy {
+            return CachePolicyTtl(ttl = 2, timeUnit = TimeUnit.MINUTES, timeProvider = timeProvider)
+        }
+
         fun fiveMinutes(timeProvider: TimeProvider): CachePolicyTtl {
             return CachePolicyTtl(ttl = 5, timeUnit = TimeUnit.MINUTES, timeProvider = timeProvider)
         }
 
-        fun oneMinute(timeProvider: TimeProvider): CachePolicy {
-            return CachePolicyTtl(ttl = 1, timeUnit = TimeUnit.MINUTES, timeProvider = timeProvider)
-        }
+
     }
 }
