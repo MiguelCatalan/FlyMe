@@ -28,7 +28,7 @@ val authModule: Module = module {
             version = REPO_VERSION,
             timeProvider = timeProvider,
             policies = listOf(
-                CachePolicyTtl.fiveMinutes(timeProvider = timeProvider)
+                CachePolicyTtl.twoMinutes(timeProvider = timeProvider)
             )
         )
     }
