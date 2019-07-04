@@ -5,6 +5,7 @@ ext {
     recyclerVersion = '1.0.0'
     cardViewVersion = '1.0.0'
     lifecycleVersion = '2.0.0'
+    googleMapsVersion = '17.0.0'
     ktxVersion = '1.0.2'
 
     // Testing
@@ -14,5 +15,6 @@ ext {
     // Dependency injector
     koinVersion = '2.0.1'
 
-    groupieVersion = '2.0.3'
+    // View helpers
+    groupieVersion = '2.3.0'
 }
