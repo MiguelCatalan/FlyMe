@@ -101,6 +101,7 @@ class ScaleActivity : AppCompatActivity(), OnMapReadyCallback {
         locationMarkers.forEachIndexed { index, location ->
             val marker = MarkerOptions()
                 .position(location.toLatLong())
+                .anchor(0.5f, 0.5f)
                 .icon(getIconByIndex(locationMarkers.size, index))
             map.addMarker(marker)
         }
