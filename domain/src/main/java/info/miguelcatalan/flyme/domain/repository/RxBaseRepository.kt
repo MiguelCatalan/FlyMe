@@ -3,7 +3,6 @@ package info.miguelcatalan.flyme.domain.repository
 import io.reactivex.Completable
 import io.reactivex.Observable
 
-
 open class RxBaseRepository<KEY, ENTITY : Identifiable<KEY>>(
     private val rxCacheableDataSources: List<RxCacheableDataSource<KEY, ENTITY>> = listOf(),
     private val rxWriteableDataSources: List<RxWriteableDataSource<KEY, ENTITY>> = listOf(),
@@ -54,7 +53,10 @@ open class RxBaseRepository<KEY, ENTITY : Identifiable<KEY>>(
         deleteAllFromDataSources(rxWriteableDataSources)
             .concatWith(deleteAllFromDataSources(rxCacheableDataSources))
 
-    private fun getByKeyFromDataSources(key: KEY, dataSources: List<RxReadableDataSource<KEY, ENTITY>>): Observable<ENTITY> =
+    private fun getByKeyFromDataSources(
+        key: KEY,
+        dataSources: List<RxReadableDataSource<KEY, ENTITY>>
+    ): Observable<ENTITY> =
         Observable.fromIterable(dataSources.reversed())
             .concatMap { it.getByKey(key) }
             .firstElement()
@@ -66,15 +68,24 @@ open class RxBaseRepository<KEY, ENTITY : Identifiable<KEY>>(
             .firstElement()
             .toObservable()
 
-    private fun addOrUpdateInDataSources(value: ENTITY, dataSources: List<RxWriteableDataSource<KEY, ENTITY>>): Observable<ENTITY> =
+    private fun addOrUpdateInDataSources(
+        value: ENTITY,
+        dataSources: List<RxWriteableDataSource<KEY, ENTITY>>
+    ): Observable<ENTITY> =
         Observable.fromIterable(dataSources.reversed())
             .concatMap { it.addOrUpdate(value) }
 
-    private fun replaceAllInDataSources(values: List<ENTITY>, dataSources: List<RxWriteableDataSource<KEY, ENTITY>>): Observable<List<ENTITY>> =
+    private fun replaceAllInDataSources(
+        values: List<ENTITY>,
+        dataSources: List<RxWriteableDataSource<KEY, ENTITY>>
+    ): Observable<List<ENTITY>> =
         Observable.fromIterable(dataSources.reversed())
             .concatMap { it.replaceAll(values) }
 
-    private fun deleteByKeyFromDataSources(key: KEY, dataSources: List<RxWriteableDataSource<KEY, ENTITY>>): Completable =
+    private fun deleteByKeyFromDataSources(
+        key: KEY,
+        dataSources: List<RxWriteableDataSource<KEY, ENTITY>>
+    ): Completable =
         Observable.fromIterable(dataSources.reversed())
             .flatMapCompletable { it.deleteByKey(key) }
 

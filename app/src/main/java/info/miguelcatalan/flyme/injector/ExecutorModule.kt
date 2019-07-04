@@ -9,7 +9,7 @@ import org.koin.dsl.module
 
 val executorModule: Module = module {
 
-    single(named("ThreadScheduler"))  {
+    single(named("ThreadScheduler")) {
         DefaultThreadScheduler(
             preExecutionThread = DefaultPreExecutionThread(),
             postExecutionThread = DefaultPostExecutionThread()

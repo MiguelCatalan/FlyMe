@@ -15,7 +15,7 @@ import org.koin.dsl.module
 
 val itineraryModule: Module = module {
 
-    val REPO_VERSION: Int = 1
+    val REPO_VERSION = 1
 
     factory(named("ScheduleApiDataSource")) {
         ScheduleApiDataSource(

@@ -18,7 +18,11 @@ class MainButton @JvmOverloads constructor(
         }
 
     init {
-        LayoutInflater.from(context).inflate(R.layout.main_button_layout, this, true)
+        LayoutInflater.from(context).inflate(
+            R.layout.main_button_layout,
+            this,
+            true
+        )
     }
 
     private fun configureLayout() {

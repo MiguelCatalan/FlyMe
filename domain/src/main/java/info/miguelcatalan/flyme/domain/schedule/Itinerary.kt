@@ -9,16 +9,16 @@ data class Itinerary(
     val arrival: Airport,
     val date: Date,
     val scales: List<Scale>
-): Serializable
+) : Serializable
 
 data class Scale(
     val departure: StopInfo,
     val arrival: StopInfo,
     val carrier: Carrier
-): Serializable
+) : Serializable
 
 data class StopInfo(
     val airport: Airport,
     val localDate: Date,
     val terminal: String? = null
-): Serializable
+) : Serializable

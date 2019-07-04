@@ -25,4 +25,4 @@ data class AirportInfo(
 data class Carrier(
     val airlineID: String,
     val flightNumber: Int
-): Serializable
+) : Serializable
