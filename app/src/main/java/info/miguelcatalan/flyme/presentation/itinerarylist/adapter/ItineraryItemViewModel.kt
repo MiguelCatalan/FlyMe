@@ -1,6 +1,6 @@
 package info.miguelcatalan.flyme.presentation.itinerarylist.adapter
 
-import androidx.databinding.ObservableField
+import androidx.lifecycle.MutableLiveData
 import info.miguelcatalan.flyme.R
 import info.miguelcatalan.flyme.domain.airport.Airport
 import info.miguelcatalan.flyme.domain.schedule.Itinerary
@@ -14,27 +14,27 @@ class ItineraryItemViewModel(
     private val resourceResolver: ResourceResolver
 ) : BaseViewModel() {
 
-    val arrival = ObservableField<Airport>()
-    val departure = ObservableField<Airport>()
+    val arrival = MutableLiveData<Airport>()
+    val departure = MutableLiveData<Airport>()
 
-    val departureDate = ObservableField<String>()
-    val departureTime = ObservableField<String>()
-    val arrivalDate = ObservableField<String>()
-    val arrivalTime = ObservableField<String>()
-    val scaleNumber = ObservableField<String>()
+    val departureDate = MutableLiveData<String>()
+    val departureTime = MutableLiveData<String>()
+    val arrivalDate = MutableLiveData<String>()
+    val arrivalTime = MutableLiveData<String>()
+    val scaleNumber = MutableLiveData<String>()
 
     fun setItinerary(itinerary: Itinerary) {
         val originStop = itinerary.scales.first().departure
         val destinationStop = itinerary.scales.last().arrival
 
-        departure.set(originStop.airport)
-        arrival.set(destinationStop.airport)
+        departure.value = originStop.airport
+        arrival.value = destinationStop.airport
 
-        departureDate.set(originStop.localDate.toReadableDate())
-        departureTime.set(originStop.localDate.toReadableTime())
-        arrivalDate.set(destinationStop.localDate.toReadableDate())
-        arrivalTime.set(destinationStop.localDate.toReadableTime())
-        scaleNumber.set(getScaleText(itinerary.scales.size - 1))
+        departureDate.value = originStop.localDate.toReadableDate()
+        departureTime.value = originStop.localDate.toReadableTime()
+        arrivalDate.value = destinationStop.localDate.toReadableDate()
+        arrivalTime.value = destinationStop.localDate.toReadableTime()
+        scaleNumber.value = getScaleText(itinerary.scales.size - 1)
     }
 
     private fun getScaleText(numberOfStops: Int): String {
