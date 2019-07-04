@@ -12,6 +12,6 @@
     </style>
 
     <style name="AppTheme.NoTitle.Main" parent="AppTheme.NoTitle">
-        <item name="android:statusBarColor">@color/aluminium</item>
+        <item name="android:statusBarColor">@color/cloud</item>
     </style>
 </resources>

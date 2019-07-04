@@ -13,7 +13,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/aluminium"
+            android:background="@color/cloud"
             android:paddingTop="72dp"
             android:orientation="vertical">
 
