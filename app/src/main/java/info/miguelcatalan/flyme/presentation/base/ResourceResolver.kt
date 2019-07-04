@@ -9,10 +9,6 @@ class ResourceResolver(
         return context.resources.getString(stringId)
     }
 
-    fun getStringResource(stringId: Int, variable: String): String {
-        return context.resources.getString(stringId, variable)
-    }
-
     fun getQuantityStringResource(stringId: Int, quantity: Int, variable: String): String {
         return context.resources.getQuantityString(stringId, quantity, variable)
     }

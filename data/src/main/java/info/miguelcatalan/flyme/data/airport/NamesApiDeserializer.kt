@@ -25,7 +25,7 @@ class NamesApiDeserializer : JsonDeserializer<Names> {
 
             namesElement.isJsonObject -> listOf(context.deserialize(namesElement.asJsonObject, NameApi::class.java))
 
-            else -> throw JsonParseException("Unsupported type of monument element")
+            else -> throw JsonParseException("Unsupported type")
         }
 
         return Names(

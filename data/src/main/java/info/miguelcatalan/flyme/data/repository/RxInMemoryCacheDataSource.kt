@@ -26,9 +26,9 @@ class RxInMemoryCacheDataSource<K, V : Identifiable<K>>(
                 val value: V? = items[key]?.value
 
                 if (value != null) {
-                    if (isValid(value))
+                    if (isValid(value)) {
                         observer.onNext(value)
-                    else {
+                    } else {
                         removeByKey(key)
                         keys = null
                     }
@@ -47,8 +47,9 @@ class RxInMemoryCacheDataSource<K, V : Identifiable<K>>(
                     || (values.isNotEmpty() && values.all { isValid(it) })
                 )
                     observer.onNext(values)
-                else
+                else {
                     removeAll()
+                }
             }
 
             observer.onComplete()

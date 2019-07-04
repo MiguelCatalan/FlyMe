@@ -17,7 +17,7 @@ class SearchForItineraries(
             ScheduleQuery(
                 departureAirportCode = departureAirportCode,
                 arrivalAirportCode = arrivalAirportCode,
-                date = Date()//Today
+                date = Date() //Today
             )
         ).applyScheduler(threadScheduler)
 }

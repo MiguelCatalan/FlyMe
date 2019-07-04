@@ -37,18 +37,17 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
-    implementation "androidx.appcompat:appcompat:${appcompatVersion}"
+    implementation "androidx.appcompat:appcompat:$appcompatVersion"
     implementation "androidx.cardview:cardview:$cardViewVersion"
     implementation "androidx.recyclerview:recyclerview:$recyclerVersion"
     implementation "androidx.core:core-ktx:$ktxVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
-    implementation 'com.google.android.gms:play-services-maps:17.0.0'
-    implementation 'androidx.appcompat:appcompat:1.0.2'
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycleVersion"
     testImplementation "androidx.arch.core:core-testing:$lifecycleVersion"
+    implementation "com.google.android.gms:play-services-maps:$googleMapsVersion"
 
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
-    implementation "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
 
     implementation "org.koin:koin-android:$koinVersion"
     implementation "org.koin:koin-android-scope:$koinVersion"

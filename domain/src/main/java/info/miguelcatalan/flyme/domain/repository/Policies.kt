@@ -1,8 +1,5 @@
 package info.miguelcatalan.flyme.domain.repository
 
-/**
- * Value to specify modifiers over the retrieval operations on repositories and data sources.
- */
 enum class ReadPolicy {
     CACHE_ONLY,
     READABLE_ONLY,
