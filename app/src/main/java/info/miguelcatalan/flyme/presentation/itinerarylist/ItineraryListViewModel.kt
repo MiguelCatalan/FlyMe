@@ -22,13 +22,17 @@ class ItineraryListViewModel(
     var isLoading = MutableLiveData<Boolean>()
 
     fun setOrigin(airport: Airport) {
-        origin.value = airport
-        tryToRequestItineraries()
+        if (origin.value == null) {
+            origin.value = airport
+            tryToRequestItineraries()
+        }
     }
 
     fun setDestination(airport: Airport) {
-        destination.value = airport
-        tryToRequestItineraries()
+        if (destination.value == null) {
+            destination.value = airport
+            tryToRequestItineraries()
+        }
     }
 
     private fun tryToRequestItineraries() {
