@@ -29,8 +29,12 @@ class ScaleActivity : AppCompatActivity(), OnMapReadyCallback {
 
     companion object {
         const val KEY_ITINERARY = "key_itinerary"
+
         const val MAP_MARKERS_PADDING_PERCENTAGE = 0.20
         const val MAP_MARKERS_VERTICAL_PADDING_PERCENTAGE = 1.40
+        const val POLYLINE_THIKNESS = 7f
+        const val DASH_LENGTH = 20f
+        const val ANCHOR_CENTER = 0.5f
     }
 
     private lateinit var map: GoogleMap
@@ -87,7 +91,7 @@ class ScaleActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun drawPolyline(locationMarkers: List<Location>) {
         val polyLineOptions = PolylineOptions()
-        polyLineOptions.width(7f)
+        polyLineOptions.width(POLYLINE_THIKNESS)
         polyLineOptions.geodesic(true)
         polyLineOptions.color(resources.getColor(R.color.steel))
         locationMarkers.forEach { location ->
@@ -95,8 +99,8 @@ class ScaleActivity : AppCompatActivity(), OnMapReadyCallback {
         }
         polyLineOptions.pattern(
             listOf(
-                Gap(20f),
-                Dash(20f)
+                Gap(DASH_LENGTH),
+                Dash(DASH_LENGTH)
             )
         )
 
@@ -108,15 +112,15 @@ class ScaleActivity : AppCompatActivity(), OnMapReadyCallback {
         locationMarkers.forEachIndexed { index, location ->
             val marker = MarkerOptions()
                 .position(location.toLatLong())
-                .anchor(0.5f, 0.5f)
+                .anchor(ANCHOR_CENTER, ANCHOR_CENTER)
                 .icon(getIconByIndex(locationMarkers.size, index))
             map.addMarker(marker)
         }
     }
 
-    private fun getIconByIndex(totalItems: Int, currentIntemIndex: Int): BitmapDescriptor {
+    private fun getIconByIndex(totalItems: Int, currentItemIndex: Int): BitmapDescriptor {
 
-        return when (currentIntemIndex) {
+        return when (currentItemIndex) {
             0, (totalItems - 1) -> BitmapDescriptorFactory.fromResource(R.drawable.ic_marker_relevant)
             else -> BitmapDescriptorFactory.fromResource(R.drawable.ic_marker_scales)
         }
