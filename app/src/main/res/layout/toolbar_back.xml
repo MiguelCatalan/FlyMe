@@ -14,13 +14,13 @@
             android:focusable="true"
             android:padding="16dp">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 app:srcCompat="@drawable/ic_back"/>
 
     </FrameLayout>
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/toolbarTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

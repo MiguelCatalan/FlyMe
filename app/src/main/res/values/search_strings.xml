@@ -5,4 +5,5 @@
     <string name="search_empty">We haven\'t found any results</string>
     <string name="search_origin">Select your origin</string>
     <string name="search_destination">Select your destination</string>
+    <string name="search_list_title">Suggested airports</string>
 </resources>
