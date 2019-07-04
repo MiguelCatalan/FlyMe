@@ -49,7 +49,7 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun configureView() {
-        searchViewModel.getSearchTerm().observe(this, Observer { term ->
+        searchViewModel.searchTerm.observe(this, Observer { term ->
             searchViewModel.search(term)
         })
 
@@ -80,11 +80,11 @@ class SearchActivity : AppCompatActivity() {
             setHasFixedSize(true)
         }
 
-        searchViewModel.getAirports().observe(this, Observer { airports ->
+        searchViewModel.airports.observe(this, Observer { airports ->
             airportAdapter.updateAirports(airports)
         })
 
-        searchViewModel.getIsLoading().observe(this, Observer { isLoading ->
+        searchViewModel.isLoading.observe(this, Observer { isLoading ->
             airportAdapter.isLoading = isLoading
         })
     }

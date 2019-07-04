@@ -45,7 +45,7 @@ class TripSelectorActivity : AppCompatActivity() {
         originStop.onPressed {
             searchViewModel.onOriginPressed()
         }
-        searchViewModel.getOrigin().observe(this, Observer {airport ->
+        searchViewModel.origin.observe(this, Observer { airport ->
             originStop.stop = airport
         })
 
@@ -55,12 +55,12 @@ class TripSelectorActivity : AppCompatActivity() {
         destinationStop.onPressed {
             searchViewModel.onDestinationPressed()
         }
-        searchViewModel.getDestination().observe(this, Observer {airport ->
+        searchViewModel.destination.observe(this, Observer { airport ->
             destinationStop.stop = airport
         })
 
         searchFlights.text = R.string.selector_search
-        searchViewModel.getCanSearchFlights().observe(this, Observer { canSearch ->
+        searchViewModel.canSearchFlights.observe(this, Observer { canSearch ->
             searchFlights.enable(canSearch)
         })
         searchFlights.setOnClickListener {

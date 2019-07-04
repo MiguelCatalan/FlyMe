@@ -15,10 +15,10 @@ class ItineraryListViewModel(
     private val notifier: Notifier
 ) : BaseViewModel() {
 
-    var origin = MutableLiveData<Airport?>()
-    var destination = MutableLiveData<Airport?>()
-    var itineraries = MutableLiveData<List<Itinerary>>()
-    var isLoading = MutableLiveData<Boolean>()
+    val origin = MutableLiveData<Airport?>()
+    val destination = MutableLiveData<Airport?>()
+    val itineraries = MutableLiveData<List<Itinerary>>()
+    val isLoading = MutableLiveData<Boolean>()
 
     fun setOrigin(airport: Airport) {
         if (origin.value == null) {

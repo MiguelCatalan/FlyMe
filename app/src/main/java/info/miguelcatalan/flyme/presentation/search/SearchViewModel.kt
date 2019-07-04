@@ -20,9 +20,9 @@ class SearchViewModel(
         const val MIN_CHARS_FOR_SEARCH = 3
     }
 
-    private var searchTerm = MutableLiveData<String>()
-    private var airports = MutableLiveData<List<Airport>>()
-    private var isLoading = MutableLiveData<Boolean>()
+    val searchTerm = MutableLiveData<String>()
+    val airports = MutableLiveData<List<Airport>>()
+    val isLoading = MutableLiveData<Boolean>()
 
     private val subject = PublishSubject.create<String>()
 
@@ -61,10 +61,4 @@ class SearchViewModel(
     fun search(term: String) {
         subject.onNext(term)
     }
-
-    fun getAirports() = airports
-
-    fun getSearchTerm() = searchTerm
-
-    fun getIsLoading() = isLoading
 }

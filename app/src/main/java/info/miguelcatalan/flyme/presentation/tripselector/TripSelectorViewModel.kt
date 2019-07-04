@@ -10,9 +10,9 @@ class TripSelectorViewModel(
     private val navigator: AppNavigator
 ) : BaseViewModel() {
 
-    private var origin = MutableLiveData<Airport?>()
-    private var destination = MutableLiveData<Airport?>()
-    private var canSearchFlights = MutableLiveData<Boolean>()
+    val origin = MutableLiveData<Airport?>()
+    val destination = MutableLiveData<Airport?>()
+    val canSearchFlights = MutableLiveData<Boolean>()
 
     init {
         canSearchFlights.value = false
@@ -46,8 +46,4 @@ class TripSelectorViewModel(
     private fun checkStops() {
         canSearchFlights.value = origin.value != null && destination.value != null
     }
-
-    fun getOrigin() = origin
-    fun getDestination() = destination
-    fun getCanSearchFlights() = canSearchFlights
 }
