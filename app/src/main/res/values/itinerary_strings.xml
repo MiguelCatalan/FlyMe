@@ -5,5 +5,8 @@
     <string name="itinerary_empty">We haven\'t found any results</string>
 
     <string name="itinerary_scales_direct">Direct flight</string>
-    <string name="itinerary_scales_with_stops">%1$s scales</string>
+    <plurals name="itinerary_scales_with_stops">
+        <item quantity="one">%1$s scale</item>
+        <item quantity="other">%1$s scales</item>
+    </plurals>
 </resources>
