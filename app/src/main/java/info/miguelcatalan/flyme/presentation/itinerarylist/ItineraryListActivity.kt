@@ -58,12 +58,12 @@ class ItineraryListActivity : AppCompatActivity() {
             setHasFixedSize(true)
         }
 
-        itineraryListViewModel.itineraries.observe(this, Observer {
-            itineraryAdapter.updateItineraries(it)
+        itineraryListViewModel.itineraries.observe(this, Observer { itineraryList ->
+            itineraryAdapter.updateItineraries(itineraryList)
         })
 
-        itineraryListViewModel.isLoading.observe(this, Observer {
-            itineraryAdapter.isLoading = it
+        itineraryListViewModel.isLoading.observe(this, Observer { isLoading ->
+            itineraryAdapter.isLoading = isLoading
         })
 
         itineraryAdapter.apply {
@@ -78,16 +78,16 @@ class ItineraryListActivity : AppCompatActivity() {
             stopType = TripStopType.Origin,
             selectable = false
         )
-        itineraryListViewModel.origin.observe(this, Observer {
-            originStop.stop = it
+        itineraryListViewModel.origin.observe(this, Observer { airport ->
+            originStop.stop = airport
         })
 
         destinationStop.configuration = TripStopConfiguration(
             stopType = TripStopType.Destination,
             selectable = false
         )
-        itineraryListViewModel.destination.observe(this, Observer {
-            destinationStop.stop = it
+        itineraryListViewModel.destination.observe(this, Observer { airport ->
+            destinationStop.stop = airport
         })
 
         toolbar.configuration = BackToolbarConfiguration(

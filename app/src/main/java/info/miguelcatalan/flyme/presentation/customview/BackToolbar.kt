@@ -29,8 +29,8 @@ class BackToolbar @JvmOverloads constructor(
     }
 
     private fun configureLayout() {
-        configuration.title?.let {
-            toolbarTitle.setText(it)
+        configuration.title?.let { resource ->
+            toolbarTitle.setText(resource)
         }
         toolbarBack.setOnClickListener {
             onBackPressedCallback.invoke()

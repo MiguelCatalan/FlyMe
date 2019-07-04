@@ -50,8 +50,8 @@ class TripStopView @JvmOverloads constructor(
     private fun configureLayout() {
         stopIcon.setImageResource(getStopIcon(configuration.stopType))
 
-        stop?.let {
-            configureWithStop(it)
+        stop?.let { airport ->
+            configureWithStop(airport)
         } ?: configureWithoutStop()
 
         when (configuration.selectable) {

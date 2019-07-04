@@ -32,7 +32,7 @@ data class AirportApi(
 
     fun toDomain(): Airport = Airport(
         airportCode = airportCode,
-        name = names.names.find { it.languageCode == "en" }?.i18n ?: "",
+        name = names.names.find {it.languageCode == "en" }?.i18n ?: "",
         location = position?.coordinate?.let {
             Location(it.latitude, it.longitude)
         }

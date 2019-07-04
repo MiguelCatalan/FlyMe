@@ -9,14 +9,14 @@ class AirportResource(
 
     fun searchForAirport(searchTerm: String): Observable<List<Airport>> {
         return repository.getAll()
-            .flatMap {
-                Observable.fromIterable(it)
+            .flatMap {airports ->
+                Observable.fromIterable(airports)
             }
-            .filter {
-                (it.name.contains(
+            .filter {airport ->
+                (airport.name.contains(
                     searchTerm,
                     ignoreCase = true
-                ) || it.airportCode.contains(
+                ) || airport.airportCode.contains(
                     searchTerm,
                     ignoreCase = true
                 ))

@@ -24,8 +24,8 @@ class AirportApiDataSource(
                 lufthansaApi.getAirport(
                     authorization = "Bearer ${auth.accessToken}",
                     airportCode = key
-                ).map {
-                    it.airportResource.airport.airport.toDomain()
+                ).map { airportResponse ->
+                    airportResponse.airportResource.airport.airport.toDomain()
                 }
             }.onErrorResumeNext(Observable.error(AirportDetailNotFoundError()))
     }
@@ -40,8 +40,8 @@ class AirportApiDataSource(
             }.repeatUntil {
                 Thread.sleep(150)
                 atomicReference.get().status == PaginatedStatus.COMPLETED
-            }.flatMap {
-                Observable.fromIterable(it)
+            }.flatMap { airports ->
+                Observable.fromIterable(airports)
             }.toList().toObservable()
 
     }
@@ -57,8 +57,8 @@ class AirportApiDataSource(
             offset = atomicReference.get().currentOffset
         ).map { airportResponse ->
             numberItemsToRetrieve = airportResponse.airportsResource.meta.totalCount
-            airportResponse.airportsResource.airports.airports.map {
-                it.toDomain()
+            airportResponse.airportsResource.airports.airports.map { airportApi ->
+                airportApi.toDomain()
             }
         }.flatMap { airports ->
             calculatePagination(

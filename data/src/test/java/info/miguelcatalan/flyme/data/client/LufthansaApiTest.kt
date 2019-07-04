@@ -37,10 +37,10 @@ class LufthansaApiTest {
         ).test()
 
         testObserver.assertComplete()
-        testObserver.assertValue {
-            it.accessToken.isNotBlank() &&
-                    it.tokenType == "bearer" &&
-                    it.expiresIn > 0
+        testObserver.assertValue { auth ->
+            auth.accessToken.isNotBlank() &&
+                    auth.tokenType == "bearer" &&
+                    auth.expiresIn > 0
         }
     }
 
@@ -58,8 +58,8 @@ class LufthansaApiTest {
         }.test()
 
         testObserver.assertComplete()
-        testObserver.assertValue {
-            it.airportsResource.airports.airports.size == 5
+        testObserver.assertValue { airportResponse ->
+            airportResponse.airportsResource.airports.airports.size == 5
         }
     }
 
@@ -68,16 +68,16 @@ class LufthansaApiTest {
         val testObserver = lufthansaApi.authenticate(
             key = KEY,
             secret = SECRET
-        ).flatMap {
+        ).flatMap { authResponse ->
             lufthansaApi.getAirport(
-                authorization = "Bearer ${it.accessToken}",
+                authorization = "Bearer ${authResponse.accessToken}",
                 airportCode = "MAD"
             )
         }.test()
 
         testObserver.assertComplete()
-        testObserver.assertValue {
-            it.airportResource.airport.airport.airportCode == "MAD"
+        testObserver.assertValue { airportResponse ->
+            airportResponse.airportResource.airport.airport.airportCode == "MAD"
         }
     }
 
@@ -86,9 +86,9 @@ class LufthansaApiTest {
         val testObserver = lufthansaApi.authenticate(
             key = KEY,
             secret = SECRET
-        ).flatMap {
+        ).flatMap { authResponse ->
             lufthansaApi.getAirport(
-                authorization = "Bearer ${it.accessToken}",
+                authorization = "Bearer ${authResponse.accessToken}",
                 airportCode = "ANY_TEXT"
             )
         }.test()
@@ -106,9 +106,9 @@ class LufthansaApiTest {
         val testObserver = lufthansaApi.authenticate(
             key = KEY,
             secret = SECRET
-        ).flatMap {
+        ).flatMap { authResponse ->
             lufthansaApi.getSchedules(
-                authorization = "Bearer ${it.accessToken}",
+                authorization = "Bearer ${authResponse.accessToken}",
                 departureAirportCode = departureAirportCode,
                 arrivalAirportCode = arrivalAirportCode,
                 date = "2019-07-20"
@@ -116,9 +116,9 @@ class LufthansaApiTest {
         }.test()
 
         testObserver.assertComplete()
-        testObserver.assertValue {
-            it.scheduleResource.schedules.isNotEmpty() &&
-                    it.scheduleResource.schedules.first().let { schedule ->
+        testObserver.assertValue { schedulesResponse ->
+            schedulesResponse.scheduleResource.schedules.isNotEmpty() &&
+                    schedulesResponse.scheduleResource.schedules.first().let { schedule ->
                         schedule.flights.isNotEmpty()
                     }
         }

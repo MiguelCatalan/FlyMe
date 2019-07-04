@@ -2,7 +2,6 @@ package info.miguelcatalan.flyme.presentation.itinerarylist
 
 import androidx.lifecycle.MutableLiveData
 import info.miguelcatalan.flyme.domain.airport.Airport
-import info.miguelcatalan.flyme.domain.logger.Logger
 import info.miguelcatalan.flyme.domain.notifier.Notifier
 import info.miguelcatalan.flyme.domain.schedule.Itinerary
 import info.miguelcatalan.flyme.domain.schedule.SearchForItineraries
@@ -48,14 +47,11 @@ class ItineraryListViewModel(
         ).doOnSubscribe {
             isLoading.value = true
         }.subscribeBy(
-            onNext = {
+            onNext = { itineraryList ->
                 isLoading.value = false
-                itineraries.value = it
-            }, onError = {
-                Logger.e(throwable = it, msg = {
-                    it.message!!
-                })
-                notifier.show(message = it.message!!)
+                itineraries.value = itineraryList
+            }, onError = { throwable ->
+                notifier.show(message = throwable.message!!)
                 itineraries.value = emptyList()
             }
         ).addDisposableTo(disposableBag)

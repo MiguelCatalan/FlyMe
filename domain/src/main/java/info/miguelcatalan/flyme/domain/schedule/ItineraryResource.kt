@@ -12,35 +12,35 @@ class ItineraryResource(
 
     fun getItineraries(query: ScheduleQuery): Observable<List<Itinerary>> {
         return schedulesRepository.getByKey(query)
-            .flatMap {
-                Observable.fromIterable(it.options)
+            .flatMap { scheduleOptions ->
+                Observable.fromIterable(scheduleOptions.options)
             }
             .filter { schedule ->
                 schedule.flights.first().departure.airportCode == query.departureAirportCode
                         && schedule.flights.last().arrival.airportCode == query.arrivalAirportCode
             }
             .toList().toObservable()
-            .map {
-                it.map { scheduleOption ->
+            .map { scheduleList ->
+                scheduleList.map { scheduleOption ->
                     populateItinerariesWithAirportsFromCodes(scheduleOption)
                 }
             }
     }
 
     fun getAirportByCode(airportCode: String): Airport {
-        var airport: Airport = Airport.empty()
+        var populatedAirport: Airport = Airport.empty()
         val disposable = airportRepository.getByKey(airportCode).subscribeBy(
-            onNext = {
-                airport = it
+            onNext = { airport ->
+                populatedAirport = airport
             },
             onError = {
-                airport = airport.copy(
+                populatedAirport = populatedAirport.copy(
                     airportCode = airportCode
                 )
             }
         )
         disposable.dispose()
-        return airport
+        return populatedAirport
     }
 
 

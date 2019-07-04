@@ -24,8 +24,8 @@ class ItineraryAdapter : GroupAdapter<ViewHolder>() {
     }
 
     fun updateItineraries(itineraries: List<Itinerary>) {
-        section.update(itineraries.map {
-            ItineraryItem(it)
+        section.update(itineraries.map { itinerary ->
+            ItineraryItem(itinerary)
         })
 
         if (itineraries.isEmpty() && !isLoading) {

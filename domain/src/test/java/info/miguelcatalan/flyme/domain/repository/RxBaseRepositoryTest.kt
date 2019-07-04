@@ -108,8 +108,8 @@ class RxBaseRepositoryTest {
 
         val rxBaseRepository = rxRepositoryMother.givenAnRxBaseRepositoryWithCacheableAndReadableDataSources()
 
-        val testObserver = rxBaseRepository.getByKey(anyRepositoryValue.key).flatMap {
-            rxBaseRepository.addOrUpdate(it.copy(key = AnyRepositoryKey(111111)))
+        val testObserver = rxBaseRepository.getByKey(anyRepositoryValue.key).flatMap { value ->
+            rxBaseRepository.addOrUpdate(value.copy(key = AnyRepositoryKey(111111)))
         }.test()
 
         testObserver.assertComplete()

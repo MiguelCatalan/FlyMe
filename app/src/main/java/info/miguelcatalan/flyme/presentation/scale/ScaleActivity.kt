@@ -8,7 +8,14 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.*
+import com.google.android.gms.maps.model.BitmapDescriptor
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.Dash
+import com.google.android.gms.maps.model.Gap
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
+import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.PolylineOptions
 import info.miguelcatalan.flyme.R
 import info.miguelcatalan.flyme.databinding.ScaleLayoutBinding
 import info.miguelcatalan.flyme.domain.airport.Location
@@ -55,9 +62,9 @@ class ScaleActivity : AppCompatActivity(), OnMapReadyCallback {
             onBackPressed()
         }
 
-        scaleViewModel.itineray.observe(this, Observer {
-            itineraryItem.setItinerary(it)
-            val locationMarkers = getLocationMarkers(it)
+        scaleViewModel.itineray.observe(this, Observer { itinerary ->
+            itineraryItem.setItinerary(itinerary)
+            val locationMarkers = getLocationMarkers(itinerary)
             drawMarkers(locationMarkers)
             drawPolyline(locationMarkers)
             setZoomBasedOnMarkers(locationMarkers)
@@ -66,8 +73,8 @@ class ScaleActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun getLocationMarkers(itinerary: Itinerary): List<Location> {
         val locationList: MutableList<Location> = mutableListOf()
-        itinerary.scales.forEach {
-            it.departure.airport.location?.let { location ->
+        itinerary.scales.forEach { scale ->
+            scale.departure.airport.location?.let { location ->
                 locationList.add(location)
             }
         }
@@ -83,8 +90,8 @@ class ScaleActivity : AppCompatActivity(), OnMapReadyCallback {
         polyLineOptions.width(7f)
         polyLineOptions.geodesic(true)
         polyLineOptions.color(resources.getColor(R.color.steel))
-        locationMarkers.forEach {
-            polyLineOptions.add(it.toLatLong())
+        locationMarkers.forEach { location ->
+            polyLineOptions.add(location.toLatLong())
         }
         polyLineOptions.pattern(
             listOf(
@@ -118,8 +125,8 @@ class ScaleActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun setZoomBasedOnMarkers(locationMarkers: List<Location>) {
         val builder = LatLngBounds.Builder()
 
-        locationMarkers.forEach {
-            builder.include(it.toLatLong())
+        locationMarkers.forEach { location ->
+            builder.include(location.toLatLong())
         }
 
         val bounds = builder.build()

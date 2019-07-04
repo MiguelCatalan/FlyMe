@@ -24,8 +24,8 @@ class AirportAdapter : GroupAdapter<ViewHolder>() {
     }
 
     fun updateAirports(airports: List<Airport>) {
-        section.update(airports.map {
-            AirportItem(it)
+        section.update(airports.map { airport ->
+            AirportItem(airport)
         })
 
         if (airports.isEmpty() && !isLoading) {

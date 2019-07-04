@@ -39,16 +39,16 @@ class SearchViewModel(
             .distinctUntilChanged()
             .filter { text -> text.length >= MIN_CHARS_FOR_SEARCH }
             .observeOn(AndroidSchedulers.mainThread())
-            .switchMap {
+            .switchMap { term ->
                 isLoading.value = true
-                searchForAirport(it)
+                searchForAirport(term)
             }
             .subscribeBy(
-                onNext = {
+                onNext = { airportList ->
                     isLoading.value = false
-                    airports.value = it
-                }, onError = {
-                    notifier.show(message = it.message!!)
+                    airports.value = airportList
+                }, onError = { throwable ->
+                    notifier.show(message = throwable.message!!)
                     airports.value = emptyList()
                 }
             ).addDisposableTo(disposableBag)

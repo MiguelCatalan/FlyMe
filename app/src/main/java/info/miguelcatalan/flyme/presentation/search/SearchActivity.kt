@@ -49,8 +49,8 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun configureView() {
-        searchViewModel.getSearchTerm().observe(this, Observer {
-            searchViewModel.search(it)
+        searchViewModel.getSearchTerm().observe(this, Observer { term ->
+            searchViewModel.search(term)
         })
 
         toolbar.configuration = BackToolbarConfiguration(
@@ -80,12 +80,12 @@ class SearchActivity : AppCompatActivity() {
             setHasFixedSize(true)
         }
 
-        searchViewModel.getAirports().observe(this, Observer {
-            airportAdapter.updateAirports(it)
+        searchViewModel.getAirports().observe(this, Observer { airports ->
+            airportAdapter.updateAirports(airports)
         })
 
-        searchViewModel.getIsLoading().observe(this, Observer {
-            airportAdapter.isLoading = it
+        searchViewModel.getIsLoading().observe(this, Observer { isLoading ->
+            airportAdapter.isLoading = isLoading
         })
     }
 
