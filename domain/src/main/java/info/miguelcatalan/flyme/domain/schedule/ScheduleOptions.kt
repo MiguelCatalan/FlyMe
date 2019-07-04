@@ -1,7 +1,7 @@
 package info.miguelcatalan.flyme.domain.schedule
 
 import info.miguelcatalan.flyme.domain.repository.Identifiable
-import java.util.*
+import java.util.Date
 
 data class ScheduleOptions(
     val options: List<Schedule>

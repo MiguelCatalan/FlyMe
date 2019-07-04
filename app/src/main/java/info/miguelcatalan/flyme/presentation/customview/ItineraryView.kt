@@ -18,7 +18,11 @@ class ItineraryView @JvmOverloads constructor(
     init {
         val inflater = LayoutInflater.from(context)
 
-        val itineraryItemBinding: ItineraryItemBinding = ItineraryItemBinding.inflate(inflater, this, true)
+        val itineraryItemBinding: ItineraryItemBinding = ItineraryItemBinding.inflate(
+            inflater,
+            this,
+            true
+        )
         viewModel = ItineraryItemViewModel(
             ResourceResolver(context)
         )

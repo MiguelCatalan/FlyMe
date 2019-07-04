@@ -1,6 +1,6 @@
 package info.miguelcatalan.flyme.domain.schedule
 
-import java.util.*
+import java.util.Date
 
 class ScheduleMother {
     companion object {

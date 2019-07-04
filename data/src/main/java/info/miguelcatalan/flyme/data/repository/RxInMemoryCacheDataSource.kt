@@ -1,6 +1,11 @@
 package info.miguelcatalan.flyme.data.repository
 
-import info.miguelcatalan.flyme.domain.repository.*
+import info.miguelcatalan.flyme.domain.repository.CacheItem
+import info.miguelcatalan.flyme.domain.repository.CacheItemPolicy
+import info.miguelcatalan.flyme.domain.repository.CachePolicy
+import info.miguelcatalan.flyme.domain.repository.Identifiable
+import info.miguelcatalan.flyme.domain.repository.RxCacheableDataSource
+import info.miguelcatalan.flyme.domain.repository.TimeProvider
 import io.reactivex.Completable
 import io.reactivex.Observable
 

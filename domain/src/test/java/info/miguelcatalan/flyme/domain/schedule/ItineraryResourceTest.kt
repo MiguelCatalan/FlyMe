@@ -13,7 +13,7 @@ import org.amshove.kluent.`should equal to`
 import org.amshove.kluent.`should not be`
 import org.junit.Before
 import org.junit.Test
-import java.util.*
+import java.util.Date
 
 class ItineraryResourceTest {
 
