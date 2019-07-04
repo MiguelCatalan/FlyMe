@@ -79,7 +79,7 @@ class TripStopView @JvmOverloads constructor(
     }
 
     private fun configureWithoutStop() {
-        stopTitle.setTextColor(resources.getColor(R.color.sugar))
+        stopTitle.setTextColor(resources.getColor(R.color.aluminium))
         stopTitle.setText(getHint(configuration.stopType))
     }
 

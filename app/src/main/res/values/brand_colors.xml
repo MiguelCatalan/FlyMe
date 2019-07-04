@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="guinness">#333333</color>
+    <color name="sky">#0078FE</color>
+    <color name="kerosene">#333333</color>
+    <color name="cloud">#F5F7FA</color>
+
     <color name="iron">#606266</color>
     <color name="steel">#828394</color>
-    <color name="aluminium">#F5F7FA</color>
-
-    <color name="sugar">#C0C4CB</color>
-    <color name="pearl">#f5f5f5</color>
+    <color name="aluminium">#C0C4CB</color>
     <color name="white">#FFFFFF</color>
-
-    <color name="sky">#0078FE</color>
-    <color name="coke">#f05f40</color>
-    <color name="heineken">#4CAF50</color>
     <color name="transparent">#00000000</color>
 </resources>

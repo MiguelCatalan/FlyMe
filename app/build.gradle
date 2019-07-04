@@ -57,8 +57,4 @@ dependencies {
     implementation "com.xwray:groupie:$groupieVersion"
     implementation "com.xwray:groupie-kotlin-android-extensions:$groupieVersion"
     implementation "com.xwray:groupie-databinding:$groupieVersion"
-
-    testImplementation "junit:junit:${junitVersion}"
-    androidTestImplementation "androidx.test:runner:${runner}"
-    androidTestImplementation "androidx.test.espresso:espresso-core:${espresso}"
 }
