@@ -5,6 +5,7 @@ import info.miguelcatalan.flyme.notifier.ToastNotifier
 import info.miguelcatalan.flyme.presentation.itinerarylist.ItineraryListActivity
 import info.miguelcatalan.flyme.presentation.itinerarylist.ItineraryListViewModel
 import info.miguelcatalan.flyme.presentation.navigator.AppNavigator
+import info.miguelcatalan.flyme.presentation.scale.ScaleViewModel
 import info.miguelcatalan.flyme.presentation.search.SearchActivity
 import info.miguelcatalan.flyme.presentation.search.SearchViewModel
 import info.miguelcatalan.flyme.presentation.tripselector.TripSelectorActivity
@@ -20,7 +21,25 @@ val appModule: Module = module {
         ApplicationTimeProvider()
     }
 
-    viewModel { (activity: SearchActivity) -> SearchViewModel(get(), ToastNotifier(activity)) }
-    viewModel { (activity: TripSelectorActivity) -> TripSelectorViewModel(AppNavigator(activity)) }
-    viewModel { (activity: ItineraryListActivity) -> ItineraryListViewModel(get(), ToastNotifier(activity)) }
+    viewModel { (activity: SearchActivity) ->
+        SearchViewModel(
+            get(),
+            ToastNotifier(activity)
+        )
+    }
+    viewModel { (activity: TripSelectorActivity) ->
+        TripSelectorViewModel(
+            AppNavigator(activity)
+        )
+    }
+    viewModel { (activity: ItineraryListActivity) ->
+        ItineraryListViewModel(
+            get(),
+            AppNavigator(activity),
+            ToastNotifier(activity)
+        )
+    }
+    viewModel {
+        ScaleViewModel()
+    }
 }

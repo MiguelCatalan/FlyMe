@@ -3,7 +3,9 @@ package info.miguelcatalan.flyme.presentation.navigator
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import info.miguelcatalan.flyme.domain.airport.Airport
+import info.miguelcatalan.flyme.domain.schedule.Itinerary
 import info.miguelcatalan.flyme.presentation.itinerarylist.ItineraryListActivity
+import info.miguelcatalan.flyme.presentation.scale.ScaleActivity
 import info.miguelcatalan.flyme.presentation.search.SearchActivity
 import info.miguelcatalan.flyme.presentation.search.SelectionType
 
@@ -24,6 +26,12 @@ class AppNavigator(
         val intent = Intent(activity, ItineraryListActivity::class.java)
         intent.putExtra(ItineraryListActivity.KEY_ORIGIN, origin)
         intent.putExtra(ItineraryListActivity.KEY_DESTINATION, destination)
+        activity.startActivity(intent)
+    }
+
+    fun navigateToScaleView(itinerary: Itinerary) {
+        val intent = Intent(activity, ScaleActivity::class.java)
+        intent.putExtra(ScaleActivity.KEY_ITINERARY, itinerary)
         activity.startActivity(intent)
     }
 

@@ -33,14 +33,15 @@ class ItineraryItemViewModel(
         departureTime.set(originStop.localDate.toReadableTime())
         arrivalDate.set(destinationStop.localDate.toReadableDate())
         arrivalTime.set(destinationStop.localDate.toReadableTime())
-        scaleNumber.set(getScaleText(itinerary.scales.size))
+        scaleNumber.set(getScaleText(itinerary.scales.size - 1))
     }
 
     private fun getScaleText(numberOfStops: Int): String {
         return when (numberOfStops) {
-            1 -> resourceResolver.getStringResource(R.string.itinerary_scales_direct)
-            else -> resourceResolver.getStringResource(
-                R.string.itinerary_scales_with_stops,
+            0 -> resourceResolver.getStringResource(R.string.itinerary_scales_direct)
+            else -> resourceResolver.getQuantityStringResource(
+                R.plurals.itinerary_scales_with_stops,
+                numberOfStops,
                 numberOfStops.toString()
             )
         }
