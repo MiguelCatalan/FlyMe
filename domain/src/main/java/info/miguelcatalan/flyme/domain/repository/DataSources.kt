@@ -2,7 +2,6 @@ package info.miguelcatalan.flyme.domain.repository
 
 import io.reactivex.Completable
 import io.reactivex.Observable
-import java.lang.Exception
 
 
 interface DataSource

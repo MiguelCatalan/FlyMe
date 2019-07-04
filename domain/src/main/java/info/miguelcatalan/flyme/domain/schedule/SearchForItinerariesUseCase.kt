@@ -3,7 +3,7 @@ package info.miguelcatalan.flyme.domain.schedule
 import info.miguelcatalan.flyme.domain.executor.ThreadScheduler
 import info.miguelcatalan.flyme.domain.executor.applyScheduler
 import io.reactivex.Observable
-import java.util.*
+import java.util.Date
 
 class SearchForItineraries(
     private val itineraryResource: ItineraryResource,

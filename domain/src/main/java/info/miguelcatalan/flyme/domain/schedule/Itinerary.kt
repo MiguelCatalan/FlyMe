@@ -2,7 +2,7 @@ package info.miguelcatalan.flyme.domain.schedule
 
 import info.miguelcatalan.flyme.domain.airport.Airport
 import java.io.Serializable
-import java.util.*
+import java.util.Date
 
 data class Itinerary(
     val departure: Airport,

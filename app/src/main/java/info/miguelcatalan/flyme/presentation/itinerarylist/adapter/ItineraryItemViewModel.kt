@@ -7,7 +7,8 @@ import info.miguelcatalan.flyme.domain.schedule.Itinerary
 import info.miguelcatalan.flyme.presentation.base.BaseViewModel
 import info.miguelcatalan.flyme.presentation.base.ResourceResolver
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
 class ItineraryItemViewModel(
     private val resourceResolver: ResourceResolver

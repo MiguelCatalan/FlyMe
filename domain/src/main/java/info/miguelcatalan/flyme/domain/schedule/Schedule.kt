@@ -1,7 +1,7 @@
 package info.miguelcatalan.flyme.domain.schedule
 
 import java.io.Serializable
-import java.util.*
+import java.util.Date
 
 data class Schedule(
     val departureAirportCode: String,

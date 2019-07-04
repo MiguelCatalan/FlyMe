@@ -1,6 +1,6 @@
 package info.miguelcatalan.flyme.domain.repository
 
-import java.util.*
+import java.util.Date
 
 interface TimeProvider {
     fun currentTimeMillis(): Long

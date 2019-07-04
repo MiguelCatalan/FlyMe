@@ -7,7 +7,7 @@ import info.miguelcatalan.flyme.domain.schedule.Carrier
 import info.miguelcatalan.flyme.domain.schedule.Flight
 import info.miguelcatalan.flyme.domain.schedule.Schedule
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
 
 
 data class SchedulesResponse(

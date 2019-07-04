@@ -8,7 +8,8 @@ import info.miguelcatalan.flyme.domain.schedule.ScheduleOptions
 import info.miguelcatalan.flyme.domain.schedule.ScheduleQuery
 import io.reactivex.Observable
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
 class ScheduleApiDataSource(
     private val lufthansaApi: LufthansaApi,
