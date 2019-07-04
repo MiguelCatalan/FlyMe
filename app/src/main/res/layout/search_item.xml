@@ -46,7 +46,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/airportName"
-                    android:textAppearance="@style/Body2"
+                    android:textAppearance="@style/Body"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{airport.name}"
