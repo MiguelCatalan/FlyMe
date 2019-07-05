@@ -1,4 +1,5 @@
 # flyme
+![](https://github.com/MiguelCatalan/FlyMe/blob/develop/art/flyme_icon.png?raw=true)
 
 ## 1- Code challenge
 **Intro:** Create an Android app that gets a list of airline schedules and displays their origin and destination airports on a map.
